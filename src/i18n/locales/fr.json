@@ -1,0 +1,650 @@
+{
+  "nav": {
+    "home": "Accueil",
+    "discover": "Trouver des Barracas",
+    "about": "À propos",
+    "admin": "Login",
+    "registerBarraca": "Enregistrer Barraca",
+    "photos": "Photos"
+  },
+  "hero": {
+    "title": "Votre Barraca Préférée Vous Attend",
+    "subtitle": "Vérifiez si votre endroit préféré est ouvert, réservez des chaises et recevez des mises à jour exclusives",
+    "cta": "Trouver Ma Barraca",
+    "earlyAccess": "Rejoindre le Programme"
+  },
+  "weather": {
+    "current": "Météo Actuelle",
+    "feelsLike": "Ressenti",
+    "humidity": "Humidité",
+    "wind": "Vent",
+    "barracaConditions": "Conditions de la Barraca",
+    "beachConditions": "Conditions de la Plage",
+    "conditions": {
+      "excellent": "Excellent pour les activités de barraca",
+      "good": "Bonnes conditions de barraca",
+      "fair": "Conditions correctes, quelques limitations",
+      "poor": "Mauvaises conditions, considérez les activités intérieures"
+    }
+  },
+  "search": {
+    "placeholder": "Rechercher par nom, numéro ou quartier...",
+    "filters": "Filtres",
+    "openNow": "Ouvert Maintenant",
+    "location": "Emplacement",
+    "clear": "Effacer les Filtres"
+  },
+  "barraca": {
+    "open": "Ouverte",
+    "closed": "Fermée",
+    "typicalHours": "Horaires",
+    "location": "Emplacement",
+    "menuPreview": "Spécialités",
+    "comingSoon": "Bientôt",
+    "weatherDependent": "Dépendant de la Météo",
+    "viewDetails": "Voir les Détails",
+    "reserveChairs": "Réserver des Chaises",
+    "loyaltyPerks": "Avantages de Membre Disponibles",
+    "partner": "Partenaire",
+    "showMore": "Afficher Plus",
+    "showLess": "Afficher Moins",
+    "moreItems": "+{count} de plus",
+    "about": "À propos",
+    "menu": "Menu",
+    "amenities": "Commodités",
+    "contact": "Contact",
+    "website": "Site Web",
+    "whatsapp": "WhatsApp",
+    "call": "Appeler",
+    "share": "Partager",
+    "notPartnered": "Non Partenaire",
+    "notPartneredMessage": "Cette barraca n'est pas notre partenaire. Seules les informations de base sont disponibles.",
+    "limitedInfo": "Info limitée",
+    "undetermined": "Indéterminé"
+  },
+  "login": {
+    "title": "Se Connecter",
+    "email": "Email",
+    "password": "Mot de passe",
+    "signIn": "Se Connecter"
+  },
+  "admin": {
+    "dashboard": "Tableau de Bord Admin",
+    "logout": "Se Déconnecter",
+    "addBarraca": "Ajouter Nouvelle Barraca",
+    "editBarraca": "Modifier Barraca",
+    "deleteBarraca": "Supprimer Barraca",
+    "manageBarracas": "Gérer les Barracas",
+    "enableWeatherOverride": "Surcharge Météo: Afficher Toutes Fermées",
+    "disableWeatherOverride": "Désactiver la Surcharge Météo",
+    "stats": "Analyses",
+    "emails": "Abonnés Email",
+    "credentials": "Identifiants de démonstration : admin@cariocacoastal.com / admin123",
+    "weatherOverrideActive": "Le mode météo forcée est actif. Toutes les barracas apparaîtront fermées jusqu'à minuit.",
+    "form": {
+      "name": "Nom",
+      "barracaNumber": "Numéro de Barraca",
+      "location": "Emplacement",
+      "description": "Description",
+      "availability": "Disponibilité",
+      "typicalHours": "Horaires Typiques",
+      "weatherDependent": "Dépendant de la Météo",
+      "partnered": "Barraca Partenaire",
+      "partneredRequired": "Statut de Partenaire Requis",
+      "partneredRequiredMessage": "Les fonctionnalités supplémentaires comme les images, le menu, les informations de contact et les équipements ne sont disponibles que pour les barracas partenaires. Cochez la case partenaire pour activer ces options.",
+      "images": "Images (URLs)",
+      "menuPreview": "Éléments du Menu",
+      "contact": "Informations de Contact",
+      "whatsapp": "WhatsApp",
+      "email": "Email",
+      "instagram": "Instagram",
+      "amenities": "Commodités",
+      "ctaButtons": "Boutons CTA Personnalisés",
+      "addImage": "Ajouter Image",
+      "addItem": "Ajouter Élément",
+      "addAmenity": "Ajouter Commodité",
+      "save": "Sauvegarder Barraca",
+      "saving": "Sauvegarde...",
+      "cancel": "Annuler",
+      "selectNeighborhood": "Sélectionner quartier",
+      "required": "*"
+    },
+    "table": {
+      "barraca": "Barraca",
+      "location": "Emplacement",
+      "availability": "Disponibilité",
+      "partnered": "Partenaire",
+      "notPartnered": "Non Partenaire",
+      "notPartneredMessage": "Cette barraca n'est pas notre partenaire. Seules les informations de base sont disponibles.",
+      "open": "Ouverte",
+      "closed": "Fermée",
+      "undetermined": "Indéterminé",
+      "updated": "Mis à jour",
+      "actions": "Actions",
+      "email": "Email",
+      "subscribed": "Abonné",
+      "preferences": "Préférences"
+    },
+    "pagination": {
+      "itemsPerPage": "Éléments par page",
+      "showing": "Affichage de {start}-{end} sur {total} barracas",
+      "previous": "Précédent",
+      "next": "Suivant"
+    },
+    "stats": {
+      "totalBarracas": "Total des Barracas",
+      "currentlyOpen": "Actuellement Ouvertes",
+      "emailSubscribers": "Abonnés Email",
+      "uniqueLocations": "Emplacements Uniques",
+      "openRate": "taux d'ouverture",
+      "thisMonth": "+2 ce mois",
+      "thisWeek": "+15 cette semaine",
+      "acrossRio": "À travers Rio",
+      "barracasByLocation": "Barracas par Emplacement",
+      "recentActivity": "Activité Récente",
+      "systemHealth": "Santé du Système",
+      "uptime": "Temps de Fonctionnement",
+      "activeSubscribers": "Abonnés Actifs"
+    }
+  },
+  "photos": {
+    "title": "Galeries Photos",
+    "description": "Parcourez nos galeries photos sélectionnées avec les meilleures images de nos événements. Chaque photo dans nos galeries est également disponible dans notre archive complète.",
+    "subtitle": "Revivez les meilleurs moments de nos rassemblements sur la plage et événements spéciaux",
+    "googlePhotosArchive": "Archive Google Photos",
+    "googlePhotosDescription": "Accédez à notre collection complète de photos sur Google Photos",
+    "viewArchive": "Voir l'Archive",
+    "photos": "photos",
+    "noPhotos": "Aucune photo disponible pour le moment",
+    "noPhotosDescription": "Revenez bientôt pour de nouvelles galeries photos",
+    "backToPhotos": "Retour aux Photos",
+    "galleryNotFound": "Galerie introuvable",
+    "downloadPhoto": "Télécharger la Photo",
+    "downloadAllPhotos": "Télécharger Toutes les Photos",
+    "instagramTag": "Taguez-nous sur Instagram",
+    "instagramTagDescription": "Si vous partagez ces photos sur Instagram, veuillez nous taguer @Carioca_Coastal_Club",
+    "gallery": "Galerie",
+    "archive": "Archive",
+    "galleryDescription": "La galerie montre nos meilleures photos. Toutes les photos disponibles dans l'archive.",
+    "allLocations": "Tous les Lieux",
+    "galleryInfo": "Informations de la Galerie",
+    "galleryInfoDescription": "Cette galerie présente nos meilleures photos de l'événement. Chaque photo affichée ici est également disponible dans notre archive complète, où vous pouvez trouver toutes les photos prises pendant cette période."
+  },
+  "email": {
+    "subscribe": "Rejoindre le Programme de Fidélité",
+    "placeholder": "Entrez votre email pour les mises à jour",
+    "submit": "Rejoindre Maintenant",
+    "joining": "Inscription...",
+    "welcome": "Bienvenue!",
+    "success": "Bienvenue au Carioca Coastal Club!",
+    "error": "Veuillez entrer une adresse email valide",
+    "failed": "L'inscription a échoué. Veuillez réessayer.",
+    "benefits": "Obtenez des réservations de chaises, des mises à jour de statut et des offres exclusives"
+  },
+  "loyalty": {
+    "benefits": "Avantages Membre",
+    "chairReservation": "Réservation de Chaises",
+    "exclusiveOffers": "Offres Exclusives",
+    "newBarracas": "Nouvelles Barracas"
+  },
+  "share": {
+    "title": "Partager cette barraca",
+    "message": "Découvrez {name} à {location} !",
+    "copied": "Lien copié dans le presse-papiers !",
+    "sharing": "Partage en cours...",
+    "error": "Erreur lors du partage. Veuillez réessayer.",
+    "shared_successfully": "Partagé avec succès !",
+    "share_error": "Erreur lors du partage. Veuillez réessayer.",
+    "platforms": {
+      "whatsapp": "Partager sur WhatsApp",
+      "facebook": "Partager sur Facebook",
+      "twitter": "Partager sur Twitter",
+      "instagram": "Partager sur Instagram",
+      "copy": "Copier le lien"
+    }
+  },
+  "home": {
+    "yourBarraca": "Votre Barraca, Votre Façon",
+    "joinThousands": "Rejoignez des milliers de clients fidèles qui utilisent Carioca Coastal Club pour rester connectés avec leurs barracas préférées",
+    "popularBarracas": "Barracas Populaires",
+    "popularDescription": "Ces barracas sont aimées par notre communauté - vérifiez si votre préférée est ouverte et réservez votre place",
+    "viewAllPartners": "Voir Toutes les Barracas",
+    "whyJoin": "Pourquoi Rejoindre Carioca Coastal Club?",
+    "whyJoinDescription": "Plus que simplement trouver des barracas - nous sommes votre connexion à la culture des barracas de Rio",
+    "exclusiveBenefits": "Avantages Exclusifs de Membre",
+    "exclusiveDescription": "Réservez des chaises, recevez des mises à jour de disponibilité, découvrez de nouveaux endroits et profitez d'offres spéciales de vos barracas préférées",
+    "joinToday": "Rejoignez le Club Aujourd'hui",
+    "joinDescription": "Commencez à profiter des avantages membre dans vos barracas préférées. Recevez des mises à jour, réservez des chaises et ne manquez jamais la journée parfaite à la barraca.",
+    "stats": {
+      "availabilityUpdates": "Mises à jour de Disponibilité",
+      "neighborhoods": "Quartiers",
+      "partnerBarracas": "Barracas Partenaires"
+    },
+    "features": {
+      "chairReservations": {
+        "title": "Réservations de Chaises",
+        "description": "Réservez votre place préférée dans les barracas participantes - ne vous souciez plus jamais de trouver une chaise"
+      },
+      "realTimeUpdates": {
+        "title": "Mises à jour en Temps Réel",
+        "description": "Recevez des notifications instantanées quand votre barraca préférée ouvre, ferme ou a des offres spéciales"
+      },
+      "exclusivePerks": {
+        "title": "Avantages Exclusifs de Membre",
+        "description": "Accédez à des réductions spéciales, un service prioritaire et des événements exclusifs dans les barracas partenaires"
+      },
+      "personalizedRecommendations": {
+        "title": "Recommandations Personnalisées",
+        "description": "Découvrez de nouvelles barracas basées sur vos préférences et recevez des conseils de locaux"
+      }
+    },
+    "memberBenefits": {
+      "chair": "Chaise",
+      "reservations": "Réservations",
+      "priority": "Priorité",
+      "service": "Service",
+      "availability": "Disponibilité",
+      "updates": "Mises à jour",
+      "special": "Offres",
+      "offers": "Spéciales"
+    },
+    "instagram": {
+      "title": "Suivez-nous sur Instagram",
+      "description": "Recevez les dernières nouveautés, réductions et informations d'événements de vos barracas préférées.",
+      "ctaButton": "Suivez-nous",
+      "followButton": "Suivre @carioca_costal_club",
+      "benefits": {
+        "photos": "Mises à jour des Fonctionnalités",
+        "updates": "Mises à jour en Temps Réel",
+        "exclusive": "Contenu Exclusif"
+      }
+    },
+    "footer": {
+      "description": "Connecter les amateurs de barracas de Rio avec leurs endroits préférés grâce aux réservations de chaises, aux mises à jour en temps réel et aux avantages exclusifs pour les membres.",
+      "quickLinks": "Liens Rapides",
+      "contact": "Contact",
+      "copyright": "© 2024 Carioca Coastal Club. Tous droits réservés.",
+      "companyName": "Carioca Coastal Club",
+      "loyaltyProgram": "Barraca Loyalty Program",
+      "email": "hello@cariocacoastal.com",
+      "phone": "+55 21 99999-0000",
+      "location": "Rio de Janeiro, RJ",
+      "instagram": "Instagram",
+      "whatsapp": "WhatsApp"
+    }
+  },
+  "about": {
+    "title": "À propos de Carioca Coastal Club",
+    "subtitle": "Nous sommes la plateforme de fidélité qui connecte les amoureux des barracas de Rio avec leurs endroits préférés. Vérifiez si votre barraca est ouverte, réservez des chaises et profitez d'avantages exclusifs de membre.",
+    "mission": "Notre Mission",
+    "missionDescription": "Renforcer le lien entre la communauté des barracas de Rio et leurs endroits préférés. Nous croyons que les clients fidèles méritent un meilleur service, et les propriétaires de barracas méritent des clients fidèles qui reviennent toujours.",
+    "missionQuote": "Chaque barraca a ses habitués - nous aidons à renforcer ces relations.",
+    "missionDetails": "Grâce aux réservations de chaises, mises à jour en temps réel et avantages exclusifs de membre, nous facilitons votre plaisir de vos endroits préférés tout en aidant les barracas à construire une plus grande fidélité client.",
+    "whatWeStandFor": "Nos Valeurs",
+    "valuesDescription": "Les valeurs qui animent notre plateforme de fidélité et communauté",
+    "values": {
+      "passion": {
+        "title": "Passion pour Rio",
+        "description": "Nous aimons Rio de Janeiro et voulons connecter les amoureux des barracas avec leurs endroits préférés."
+      },
+      "community": {
+        "title": "Communauté d'Abord",
+        "description": "Construire la fidélité entre clients et barracas grâce à une meilleure communication et service."
+      },
+      "convenience": {
+        "title": "Commodité",
+        "description": "Réservez des chaises, recevez des mises à jour et profitez d'avantages exclusifs dans les barracas participantes."
+      },
+      "benefits": {
+        "title": "Avantages Membre",
+        "description": "Offres exclusives, service prioritaire et événements spéciaux pour les clients fidèles."
+      }
+    },
+    "meetTeam": "Rencontrez Notre Équipe",
+    "teamDescription": "Passionnés de barracas et experts en technologie travaillant pour renforcer la communauté des barracas de Rio",
+    "team": {
+      "vincent": {
+        "name": "Vincent Wilson",
+        "role": "Fondateur et PDG",
+        "bio": "Né et élevé aux États-Unis, Vincent apporte plus de 5 ans d'expérience en développement commercial international et construction de relations sur des marchés diversifiés."
+      },
+      "hans": {
+        "name": "Hans Yadav",
+        "role": "CTO",
+        "bio": "Leader technologique expérimenté avec expertise dans les systèmes de service client et le développement de plateformes numériques."
+      },
+      "simon": {
+        "name": "Simon Paul",
+        "role": "Directeur des Opérations",
+        "bio": "Passionné de technologie axé sur la création d'expériences utilisateur transparentes et l'optimisation des processus opérationnels."
+      },
+      "jordi": {
+        "name": "Jordi De Avila",
+        "role": "Gestionnaire des Opérations Commerciales",
+        "bio": "Professionnel dévoué avec expertise dans l'optimisation des processus commerciaux et la gestion des relations clients."
+      },
+      "ricardo": {
+        "name": "Ricardo Del Razo",
+        "role": "Chef des Partenariats Spéciaux",
+        "bio": "Expert en partenariats stratégiques avec expérience dans le développement et le maintien de relations commerciales clés."
+      },
+      "janeese": {
+        "name": "Janeese Hollingshead",
+        "role": "CFO",
+        "bio": "Experte financière avec une vaste expérience en planification financière stratégique et gestion de la croissance des entreprises."
+      },
+      "leticia": {
+        "name": "Leticia Castilhos",
+        "role": "Directrice des Réseaux Sociaux",
+        "bio": "Spécialiste du marketing digital axée sur la construction de communautés en ligne engagées et l'augmentation de la notoriété de la marque via les réseaux sociaux."
+      }
+    },
+    "getInTouch": "Contactez-nous",
+    "getInTouchDescription": "Questions sur l'adhésion? Vous voulez être notre partenaire? Nous aimerions vous entendre.",
+    "whatsapp": "WhatsApp",
+    "whatsappDescription": "Réponses rapides via WhatsApp",
+    "instagram": "Instagram",
+    "instagramDescription": "Suivez-nous pour les mises à jour quotidiennes",
+    "stats": {
+      "partnerBarracas": "Barracas Partenaires",
+      "activeMembers": "Membres Actifs",
+      "statusUpdates": "Mises à jour de Statut",
+      "neighborhoods": "Quartiers"
+    },
+    "joinCommunity": "Rejoignez Notre Communauté",
+    "joinCommunityDescription": "Recevez des mises à jour de membre, alertes de réservation de chaises et offres exclusives des barracas partenaires"
+  },
+  "discover": {
+    "title": "Trouvez Votre Barraca",
+    "subtitle": "Vérifiez si votre endroit préféré est ouvert, réservez des chaises et découvrez de nouveaux avantages membre",
+    "searchPlaceholder": "Rechercher par nom, numéro de barraca (ex. 001), ou quartier...",
+    "resultsFound": "Partenaire",
+    "barracas": "Barracas",
+    "barraca": "Barraca",
+    "found": "Trouvées",
+    "noResults": "Aucune barraca trouvée",
+    "noResultsMessage": "Aucun résultat pour \"{query}\". Essayez de rechercher par numéro de barraca, nom ou quartier.",
+    "adjustCriteria": "Essayez d'ajuster vos critères de recherche ou filtres.",
+    "clearAllFilters": "Effacer Tous les Filtres",
+    "filters": {
+      "all": "Toutes",
+      "open": "Ouvertes",
+      "closed": "Fermées",
+      "allRatings": "Toutes les Évaluations",
+      "excellent": "Excellent",
+      "great": "Très Bien",
+      "good": "Bon"
+    }
+  },
+  "stories": {
+    "title": "Histoires",
+    "new": "nouvelles",
+    "viewStories": "Voir les histoires de {name}"
+  },
+  "visitor": {
+    "totalUnique": "Total des Visiteurs Uniques Depuis le Lancement",
+    "totalUsers": "Total des Utilisateurs (30 jours)",
+    "realTime": "Compteur en temps réel",
+    "activeNow": "actifs maintenant",
+    "fromGA4": "De Google Analytics"
+  },
+  "common": {
+    "loading": "Chargement...",
+    "error": "Erreur",
+    "success": "Succès",
+    "cancel": "Annuler",
+    "save": "Enregistrer",
+    "delete": "Supprimer",
+    "edit": "Modifier",
+    "add": "Ajouter",
+    "remove": "Retirer",
+    "close": "Fermer",
+    "back": "Retour",
+    "more": "Plus",
+    "less": "Moins",
+    "showMore": "Afficher Plus",
+    "showLess": "Afficher Moins",
+    "required": "Requis",
+    "optional": "Optionnel"
+  },
+  "cta": {
+    "reserve": "Réserver",
+    "details": "Détails",
+    "contact": "Contact",
+    "menu": "Menu",
+    "whatsapp": "WhatsApp",
+    "instagram": "Instagram"
+  },
+  "registration": {
+    "title": "Enregistrer Votre Barraca",
+    "subtitle": "Enregistrez votre barraca pour que nous puissions travailler ensemble. Remplissez le formulaire ci-dessous pour commencer.",
+    "form": {
+      "basicInfo": "Informations de Base",
+      "name": "Nom de la Barraca",
+      "namePlaceholder": "Entrez le nom de votre barraca",
+      "ownerName": "Nom du Propriétaire",
+      "ownerNamePlaceholder": "Entrez le nom complet du propriétaire",
+      "barracaNumber": "Numéro de Barraca",
+      "barracaNumberPlaceholder": "ex. 1, 2",
+      "nearestPosto": "Posto le Plus Proche",
+      "selectPosto": "Sélectionner un posto",
+      "location": "Emplacement",
+      "locationPlaceholder": "Entrez votre emplacement ou quartier",
+      "description": "Description",
+      "descriptionPlaceholder": "Parlez-nous de votre barraca, spécialités et ce qui la rend unique",
+      "contactInfo": "Informations de Contact",
+      "phone": "Numéro de Téléphone",
+      "phonePlaceholder": "Entrez votre numéro de téléphone",
+      "email": "Adresse Email",
+      "emailPlaceholder": "Entrez votre adresse email",
+      "instagram": "Compte Instagram",
+      "instagramPlaceholder": "@votrebarraca",
+      "website": "Site Web",
+      "websitePlaceholder": "https://votresite.com",
+      "hours": "Horaires d'Ouverture",
+      "typicalHours": "Horaires Typiques",
+      "typicalHoursPlaceholder": "ex. 9h00 - 18h00",
+      "weekendHoursEnabled": "Horaires de Week-end Différents",
+      "weekendHours": "Horaires de Week-end",
+      "friday": "Vendredi",
+      "saturday": "Samedi",
+      "sunday": "Dimanche",
+      "open": "Ouvert",
+      "close": "Fermé",
+      "menu": "Menu et Spécialités",
+      "menuPreview": "Éléments du Menu",
+      "menuPreviewPlaceholder": "Ajoutez vos plats les plus populaires",
+      "addMenuItem": "Ajouter Élément de Menu",
+      "removeMenuItem": "Supprimer",
+      "amenities": "Commodités",
+      "amenitiesPlaceholder": "Quels services proposez-vous?",
+      "addAmenity": "Ajouter Commodité",
+      "removeAmenity": "Supprimer",
+      "vibe": "Vibe et Atmosphère",
+      "vibeDescription": "Sélectionnez le type de vibe et d'atmosphère que votre barraca propose",
+      "customVibe": "Types de Vibe Personnalisés",
+      "customVibePlaceholder": "Type de vibe personnalisé",
+      "addCustomVibe": "Ajouter Type de Vibe Personnalisé",
+      "remove": "Supprimer",
+      "defaultPhoto": "Photo par Défaut",
+      "defaultPhotoDescription": "Téléchargez une photo haute résolution qui met en valeur ce qui rend votre barraca unique",
+      "partnership": "Opportunités de Partenariat",
+      "partnershipDescription": "Optionnel: Faites-nous savoir si vous êtes intéressé par ces opportunités de partenariat",
+      "qrCodes": "Codes QR sur les Meubles",
+      "qrCodesDescription": "Seriez-vous prêt à ajouter des codes QR pour notre site web sur vos chaises et tables?",
+      "repeatDiscounts": "Réductions Clients Fidèles",
+      "repeatDiscountsDescription": "Offririez-vous des réductions pour les clients fidèles via notre plateforme?",
+      "hotelPartnerships": "Partenariats Hôteliers",
+      "hotelPartnershipsDescription": "Participeriez-vous à des partenariats avec des hôtels pour des tarifs spéciaux pour leurs clients?",
+      "contentCreation": "Création de Contenu",
+      "contentCreationDescription": "Seriez-vous prêt à produire du contenu ensemble pour Instagram/TikTok?",
+      "onlineOrders": "Commandes en Ligne",
+      "onlineOrdersDescription": "Seriez-vous prêt à prendre des commandes via notre site (commandes envoyées à votre WhatsApp)?",
+      "selectAllPartnerships": "Sélectionner Tous les Partenariats",
+      "clearAllPartnerships": "Effacer Tous les Partenariats",
+      "contactPreferences": "Préférences de Contact",
+      "contactPreferencesDescription": "Optionnel: Faites-nous savoir si vous êtes prêt à être contacté pour des photos et mises à jour de statut",
+      "contactForPhotos": "Contact pour Photos",
+      "contactForPhotosDescription": "Pouvons-nous vous contacter via WhatsApp ou Instagram pour collecter des photos de votre barraca?",
+      "contactForStatus": "Contact pour Mises à Jour de Statut",
+      "contactForStatusDescription": "Pouvons-nous vous contacter pour les mises à jour de statut ouvert/fermé?",
+      "selectAllPreferences": "Sélectionner Toutes les Préférences",
+      "clearAllPreferences": "Effacer Toutes les Préférences",
+      "partnershipsSelected": "{{count}} sur 5 partenariats sélectionnés",
+      "preferencesSelected": "{{count}} sur 2 préférences sélectionnées",
+      "clickToChangePhoto": "Cliquez pour changer la photo",
+      "clickToUpload": "Cliquez pour télécharger",
+      "dragAndDrop": "ou glissez-déposez",
+      "fileTypes": "PNG, JPG, GIF jusqu'à 10MB",
+      "fileSizeError": "La taille du fichier doit être inférieure à 10MB",
+      "preferredContactMethod": "Méthode de Contact Préférée",
+      "selectContactMethod": "Sélectionnez votre méthode de contact préférée",
+      "whatsapp": "WhatsApp",
+      "instagram": "Instagram",
+      "email": "Email",
+      "englishFluency": "Maîtrise de l'Anglais",
+      "englishFluencyDescription": "Avez-vous quelqu'un dans votre équipe qui parle couramment l'anglais?",
+      "englishFluencyNo": "Non",
+      "englishFluencyNotFluent": "Pas couramment",
+      "englishFluencyFluent": "Couramment",
+      "englishSpeakerNames": "Noms des Anglophones",
+      "englishSpeakerNamesPlaceholder": "Entrez le(s) nom(s) du personnel qui parle anglais",
+      "tabSystem": "Système de Commandes",
+      "tabSystemDescription": "Comment suivez-vous ce qui a été commandé par une personne ou un groupe?",
+      "tabSystemNameOnly": "Nom seulement",
+      "tabSystemIndividualPaper": "Ticket papier individuel",
+      "tabSystemNumberOnChair": "Numéro sur la chaise",
+      "tabSystemDigital": "Numérique (suivi par application ou système)",
+      "additionalInfo": "Informations Supplémentaires",
+      "additionalInfoPlaceholder": "Toute autre information que vous aimeriez partager",
+      "submit": "Soumettre l'Enregistrement",
+      "submitting": "Soumission...",
+      "success": "Enregistrement Soumis avec Succès!",
+      "successMessage": "Merci d'avoir enregistré votre barraca! Nous examinerons vos informations et vous contacterons bientôt.",
+      "error": "Échec de l'Enregistrement",
+      "errorMessage": "Échec de la soumission de l'enregistrement. Veuillez réessayer.",
+      "required": "Ce champ est requis",
+      "invalidEmail": "Veuillez entrer une adresse email valide",
+      "invalidPhone": "Veuillez entrer un numéro de téléphone valide"
+    },
+    "neighborhoods": {
+      "copacabana": "Copacabana",
+      "ipanema": "Ipanema",
+      "leblon": "Leblon",
+      "barra": "Barra da Tijuca",
+      "recreio": "Recreio dos Bandeirantes",
+      "other": "Autre"
+    },
+    "amenities": {
+      "chairs": "Chaises de Plage",
+      "umbrellas": "Parapluies",
+      "food": "Service de Nourriture",
+      "drinks": "Boissons",
+      "music": "Musique Live",
+      "wifi": "Wi-Fi",
+      "parking": "Parking",
+      "shower": "Douche",
+      "bathroom": "Salle de Bain",
+      "creditCard": "Carte de Crédit Acceptée",
+      "delivery": "Service de Livraison",
+      "reservations": "Réservations",
+      "WiFi": "Wi-Fi",
+      "Shower": "Douche",
+      "Food": "Nourriture",
+      "Lockers": "Casiers"
+    },
+    "vibes": {
+      "familyFriendly": "Familial",
+      "lgbtq": "LGBTQ+",
+      "relaxed": "Détendu",
+      "volleyball": "Volley-ball",
+      "frescoball": "Frescobol",
+      "party": "Fête",
+      "sports": "Sports",
+      "romantic": "Romantique",
+      "quiet": "Calme",
+      "beachGames": "Jeux de Plage",
+      "fitness": "Fitness"
+    }
+  },
+  "adminRegistrations": {
+    "title": "Enregistrements de Barracas",
+    "subtitle": "Examiner et gérer les soumissions d'enregistrement de barracas",
+    "stats": {
+      "total": "Total des Enregistrements",
+      "pending": "En Attente d'Examen",
+      "approved": "Approuvés",
+      "rejected": "Rejetés"
+    },
+    "filters": {
+      "all": "Tous",
+      "pending": "En Attente",
+      "approved": "Approuvés",
+      "rejected": "Rejetés"
+    },
+    "table": {
+      "name": "Nom",
+      "location": "Emplacement",
+      "contact": "Contact",
+      "submitted": "Soumis",
+      "status": "Statut",
+      "actions": "Actions"
+    },
+    "status": {
+      "pending": "En Attente",
+      "approved": "Approuvé",
+      "rejected": "Rejeté"
+    },
+    "actions": {
+      "view": "Voir les Détails",
+      "approve": "Approuver",
+      "reject": "Rejeter",
+      "delete": "Supprimer",
+      "convert": "Convertir en Barraca"
+    },
+    "modal": {
+      "title": "Détails de l'Enregistrement",
+      "basicInfo": "Informations de Base",
+      "contactInfo": "Informations de Contact",
+      "hours": "Horaires d'Ouverture",
+      "menu": "Menu et Commodités",
+      "additionalInfo": "Informations Supplémentaires",
+      "adminNotes": "Notes Admin",
+      "adminNotesPlaceholder": "Ajouter des notes sur cet enregistrement...",
+      "approve": "Approuver l'Enregistrement",
+      "reject": "Rejeter l'Enregistrement",
+      "approving": "Approbation...",
+      "rejecting": "Rejet...",
+      "deleting": "Suppression...",
+      "close": "Fermer"
+    },
+    "messages": {
+      "approved": "Enregistrement approuvé avec succès",
+      "rejected": "Enregistrement rejeté",
+      "deleted": "Enregistrement supprimé",
+      "converted": "Enregistrement converti en barraca avec succès",
+      "error": "Une erreur s'est produite. Veuillez réessayer."
+    },
+    "noRegistrations": "Aucun enregistrement trouvé",
+    "loading": "Chargement des enregistrements..."
+  },
+  "marquee": {
+    "title": "Merci de vous être enregistré",
+    "loading": "Chargement des barracas enregistrées..."
+  },
+  "toast": {
+    "success": "Enregistrement soumis avec succès!",
+    "error": "Erreur lors de la soumission de l'enregistrement. Veuillez réessayer.",
+    "loading": "Soumission de l'enregistrement..."
+  },
+  "languages": {
+    "english": "English",
+    "portuguese": "Português",
+    "spanish": "Español",
+    "french": "Français"
+  },
+  "emailSubscription": {
+    "title": "Restez Connecté",
+    "description": "Recevez des notifications sur les nouveaux événements et promotions"
+  }
+}

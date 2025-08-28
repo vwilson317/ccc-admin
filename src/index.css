@@ -1,3 +1,381 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* Hide scrollbar for story carousel */
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+/* Line clamp utility */
+.line-clamp-2 {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+}
+
+/* Smooth transitions for story elements */
+.story-transition {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Beach-themed gradient for story rings */
+.story-ring-gradient {
+  background: linear-gradient(45deg, #ec4899, #eab308, #0ea5e9, #84cc16, #06b6d4, #3b82f6);
+  background-size: 300% 300%;
+  animation: beach-gradient-shift 4s ease infinite;
+}
+
+@keyframes beach-gradient-shift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* Beach sunset gradient animation */
+@keyframes sunset-glow {
+  0%, 100% { 
+    background: linear-gradient(45deg, #ec4899, #eab308, #0ea5e9);
+  }
+  50% { 
+    background: linear-gradient(45deg, #db2777, #ec4899, #eab308);
+  }
+}
+
+.sunset-gradient {
+  animation: sunset-glow 3s ease-in-out infinite;
+}
+
+/* Touch feedback for story interactions */
+.story-touch-feedback {
+  transition: transform 0.1s ease;
+}
+
+.story-touch-feedback:active {
+  transform: scale(0.95);
+}
+
+/* Wave-like progress bar animation */
+.story-progress {
+  transition: width 0.1s linear;
+  background: linear-gradient(90deg, #ec4899, #eab308, #0ea5e9);
+}
+
+/* Fade in animation for story content */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.5s ease-out;
+}
+
+/* Story viewer backdrop blur with beach theme */
+.story-backdrop {
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  background: linear-gradient(135deg, rgba(236, 72, 153, 0.1), rgba(14, 165, 233, 0.1));
+}
+
+/* Custom focus styles for accessibility */
+.story-focus:focus {
+  outline: 2px solid #ec4899;
+  outline-offset: 2px;
+}
+
+/* Loading spinner for story media with beach colors */
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.story-loading {
+  animation: spin 1s linear infinite;
+}
+
+/* Smooth drag cursor for story carousel */
+.cursor-grab {
+  cursor: grab;
+}
+
+.cursor-grab:active {
+  cursor: grabbing;
+}
+
+/* Prevent text selection during drag */
+.select-none {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+/* Mobile-specific barraca selectability indicators */
+@media (max-width: 768px) {
+  /* Subtle tap feedback for barraca cards */
+  .barraca-tap-feedback {
+    transition: transform 0.1s ease, box-shadow 0.1s ease;
+  }
+  
+  .barraca-tap-feedback:active {
+    transform: scale(0.98);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  }
+  
+  /* Gentle glow effect for partnered barracas on mobile */
+  .barraca-selectable {
+    position: relative;
+  }
+  
+  .barraca-selectable::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    background: linear-gradient(45deg, transparent, rgba(236, 72, 153, 0.05), transparent);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+  }
+  
+  .barraca-selectable:active::after {
+    opacity: 1;
+  }
+  
+  /* Subtle border highlight for partnered barracas */
+  .barraca-selectable {
+    border-color: rgba(236, 72, 153, 0.2) !important;
+  }
+  
+  .barraca-selectable:active {
+    border-color: rgba(236, 72, 153, 0.4) !important;
+  }
+}
+
+/* Enhanced story ring animations with beach theme */
+.story-ring-viewed {
+  opacity: 0.6;
+  filter: grayscale(20%);
+}
+
+.story-ring-unviewed {
+  opacity: 1;
+  filter: none;
+}
+
+/* Smooth hover effects for story rings */
+.story-ring-hover {
+  transition: transform 0.3s ease, opacity 0.3s ease, filter 0.3s ease, box-shadow 0.3s ease;
+}
+
+.story-ring-hover:hover {
+  transform: scale(1.05);
+  filter: brightness(1.1);
+}
+
+/* Beach-themed glow effects */
+.beach-glow {
+  box-shadow: 0 0 20px rgba(236, 72, 153, 0.3);
+}
+
+.beach-glow-pink {
+  box-shadow: 0 0 20px rgba(14, 165, 233, 0.3);
+}
+
+/* Ripple effect for story interactions */
+@keyframes ripple {
+  0% {
+    transform: scale(0);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(4);
+    opacity: 0;
+  }
+}
+
+.ripple-effect {
+  position: relative;
+  overflow: hidden;
+}
+
+.ripple-effect::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: rgba(236, 72, 153, 0.5);
+  transform: translate(-50%, -50%);
+  animation: ripple 0.6s linear;
+}
+
+/* Pulsing animation for real-time status indicators */
+@keyframes statusPulse {
+  0% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.7;
+    transform: scale(1.05);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.status-pulse {
+  animation: statusPulse 2s ease-in-out infinite;
+}
+
+/* Faster pulse for more urgent status changes */
+.status-pulse-fast {
+  animation: statusPulse 1s ease-in-out infinite;
+}
+
+/* Pulsing dot animation */
+@keyframes dotPulse {
+  0% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.5;
+    transform: scale(1.2);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.dot-pulse {
+  animation: dotPulse 1.5s ease-in-out infinite;
+}
+
+/* Scroll Animation Classes */
+/* Staggered animation delays */
+.stagger-1 { animation-delay: 0.1s; }
+.stagger-2 { animation-delay: 0.2s; }
+.stagger-3 { animation-delay: 0.3s; }
+.stagger-4 { animation-delay: 0.4s; }
+.stagger-5 { animation-delay: 0.5s; }
+.stagger-6 { animation-delay: 0.6s; }
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  .stagger-1, .stagger-2, .stagger-3, .stagger-4, .stagger-5, .stagger-6 {
+    animation-delay: 0s;
+  }
+  
+  .transition-all {
+    transition: none !important;
+  }
+  
+  .duration-700 {
+    transition-duration: 0s !important;
+  }
+}
+
+/* Global font styles */
+body {
+  font-family: 'Open Sans', ui-sans-serif, system-ui, sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Nunito', ui-sans-serif, system-ui, sans-serif;
+}
+
+/* Smooth scrolling for better animation experience */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Will-change optimization for transform and opacity animations */
+.transition-all {
+  will-change: transform, opacity;
+}
+
+/* Marquee scrolling utility for weather bar */
+@keyframes marquee-scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.marquee-container {
+  overflow: hidden;
+}
+
+.marquee-track {
+  display: flex;
+  width: max-content;
+  white-space: nowrap;
+  animation: marquee-scroll 90s linear infinite;
+}
+
+.marquee-track:hover {
+  animation-play-state: paused;
+}
+
+/* Mobile touch pause */
+@media (hover: none) and (pointer: coarse) {
+  .marquee-track:active {
+    animation-play-state: paused;
+  }
+}
+
+.marquee-content {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+/* Registration marquee scrolling animation */
+@keyframes scroll-left {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-scroll-left {
+  animation: scroll-left 25s linear infinite;
+  display: flex;
+  width: max-content;
+}
+
+/* Slower animation on mobile for better readability */
+@media (max-width: 768px) {
+  .animate-scroll-left {
+    animation-duration: 35s;
+  }
+}
+
+/* Pause animation on hover */
+.animate-scroll-left:hover {
+  animation-play-state: paused;
+}

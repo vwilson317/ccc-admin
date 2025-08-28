@@ -5,11 +5,12 @@ import { useApp } from '../contexts/AppContext';
 // import { useAnalytics } from '../hooks/useAnalytics';
 import { getEffectiveOpenStatus } from '../utils/environmentUtils';
 import AdminBarracaForm from '../components/AdminBarracaForm';
-// import AdminStats from '../components/AdminStats';
+import AdminStats from '../components/AdminStats';
 // import AnalyticsDashboard from '../components/AnalyticsDashboard';
 import SpecialAdminPanel from '../components/SpecialAdminPanel';
 import ManualStatusPanel from '../components/ManualStatusPanel';
 import AdminRegistrations from '../components/AdminRegistrations';
+import LanguageSwitcher from '../components/LanguageSwitcher';
 
 const Admin: React.FC = () => {
   const { t } = useTranslation();
@@ -274,15 +275,20 @@ const Admin: React.FC = () => {
                 Special Admin Panel
               </h1>
               
-              {/* Desktop Logout Button - Always visible when logged in */}
-              <button
-                onClick={adminLogout}
-                className="flex items-center px-4 sm:px-6 py-2 bg-red-600 text-white text-sm font-medium rounded-lg hover:bg-red-700 transition-colors shadow-sm border-2 border-red-700"
-              >
-                <Power className="h-4 w-4 mr-2" />
-                <span className="hidden sm:inline">{t('admin.logout')}</span>
-                <span className="sm:hidden">Logout</span>
-              </button>
+              <div className="flex items-center space-x-4">
+                {/* Language Switcher */}
+                <LanguageSwitcher />
+                
+                {/* Desktop Logout Button - Always visible when logged in */}
+                <button
+                  onClick={adminLogout}
+                  className="flex items-center px-4 sm:px-6 py-2 bg-red-600 text-white text-sm font-medium rounded-lg hover:bg-red-700 transition-colors shadow-sm border-2 border-red-700"
+                >
+                  <Power className="h-4 w-4 mr-2" />
+                  <span className="hidden sm:inline">{t('admin.logout')}</span>
+                  <span className="sm:hidden">Logout</span>
+                </button>
+              </div>
               
 
             </div>
@@ -312,14 +318,19 @@ const Admin: React.FC = () => {
               {t('admin.dashboard')}
             </h1>
             
-            {/* Desktop Logout Button */}
-            <button
-              onClick={adminLogout}
-              className="hidden sm:flex items-center px-4 py-2 text-sm text-red-600 hover:text-red-800 hover:bg-red-50 rounded-lg transition-colors"
-            >
-              <Power className="h-4 w-4 mr-2" />
-              {t('admin.logout')}
-            </button>
+            <div className="flex items-center space-x-4">
+              {/* Language Switcher */}
+              <LanguageSwitcher />
+              
+              {/* Desktop Logout Button */}
+              <button
+                onClick={adminLogout}
+                className="hidden sm:flex items-center px-4 py-2 text-sm text-red-600 hover:text-red-800 hover:bg-red-50 rounded-lg transition-colors"
+              >
+                <Power className="h-4 w-4 mr-2" />
+                {t('admin.logout')}
+              </button>
+            </div>
             
             {/* Mobile Menu Button */}
             <button
@@ -790,13 +801,7 @@ const Admin: React.FC = () => {
         )}
 
         {activeTab === 'manual' && (
-          <ManualStatusPanel 
-            onRefresh={() => {
-              // Trigger a refresh of the barracas data without page reload
-              // The real-time updates should handle this automatically via Firestore
-              console.log('Manual status panel refresh requested');
-            }}
-          />
+          <ManualStatusPanel />
         )}
       </div>
     </div>

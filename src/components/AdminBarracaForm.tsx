@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Save, X, Plus, Trash2, Settings } from 'lucide-react';
+import { Save, X, Plus, Trash2, Settings, Calendar, Eye, MessageCircle, Menu, Phone, Mail, ExternalLink, Star, Instagram } from 'lucide-react';
 import { useApp } from '../contexts/AppContext';
 import { Barraca, CTAButtonConfig } from '../types';
 

@@ -1,0 +1,646 @@
+{
+  "nav": {
+    "home": "Home",
+    "discover": "Find Barracas",
+    "about": "About",
+    "admin": "Login",
+    "registerBarraca": "Register Barraca",
+    "photos": "Photos"
+  },
+  "hero": {
+    "title": "Your Favorite Barraca Awaits",
+    "subtitle": "Check if your go-to spot is open, reserve chairs, and get exclusive member updates",
+    "cta": "Find My Barraca",
+    "earlyAccess": "Join Loyalty Program"
+  },
+  "weather": {
+    "current": "Current Weather",
+    "feelsLike": "Feels like",
+    "humidity": "Humidity",
+    "wind": "Wind",
+    "barracaConditions": "Barraca Conditions",
+    "beachConditions": "Beach Conditions",
+    "conditions": {
+      "excellent": "Excellent for barraca activities",
+      "good": "Good barraca conditions",
+      "fair": "Fair conditions, some limitations",
+      "poor": "Poor conditions, consider indoor activities"
+    }
+  },
+  "search": {
+    "placeholder": "Search by name, number, or neighborhood...",
+    "filters": "Filters",
+    "openNow": "Open Now",
+    "location": "Location",
+    "clear": "Clear Filters"
+  },
+  "barraca": {
+    "open": "Open",
+    "closed": "Closed",
+    "typicalHours": "Hours",
+    "location": "Location",
+    "menuPreview": "Specialties",
+    "comingSoon": "Coming Soon",
+    "weatherDependent": "Weather Dependent",
+    "viewDetails": "View Details",
+    "reserveChairs": "Reserve Chairs",
+    "loyaltyPerks": "Member Perks Available",
+    "partner": "Partner",
+    "showMore": "Show More",
+    "showLess": "Show Less",
+    "moreItems": "+{count} more",
+    "about": "About",
+    "menu": "Menu",
+    "amenities": "Amenities",
+    "contact": "Contact",
+    "website": "Website",
+    "whatsapp": "WhatsApp",
+    "call": "Call",
+    "share": "Share",
+    "notPartnered": "Not Partnered",
+    "notPartneredMessage": "This barraca is not partnered with us. Only basic information is available.",
+    "limitedInfo": "Limited info",
+    "open": "Open",
+    "closed": "Closed",
+    "undetermined": "Undetermined"
+  },
+  "login": {
+    "title": "Sign In",
+    "email": "Email",
+    "password": "Password",
+    "signIn": "Sign In"
+  },
+  "admin": {
+    "dashboard": "Admin Dashboard",
+    "logout": "Logout",
+    "addBarraca": "Add New Barraca",
+    "editBarraca": "Edit Barraca",
+    "deleteBarraca": "Delete Barraca",
+    "manageBarracas": "Manage Barracas",
+    "enableWeatherOverride": "Weather Override: Show All Closed",
+    "disableWeatherOverride": "Disable Weather Override",
+    "stats": "Analytics",
+    "emails": "Email Subscribers",
+    "credentials": "Demo credentials: admin@cariocacoastal.com / admin123",
+    "enableWeatherOverride": "Enable Weather Override",
+    "disableWeatherOverride": "Disable Weather Override",
+    "weatherOverrideActive": "Weather override is active. All barracas will appear closed until midnight.",
+    "form": {
+      "name": "Name",
+      "barracaNumber": "Barraca Number",
+      "location": "Location",
+      "description": "Description",
+      "availability": "Availability",
+      "typicalHours": "Typical Hours",
+      "weatherDependent": "Weather Dependent",
+      "partnered": "Partnered Barraca",
+      "partneredRequired": "Partnered Status Required",
+      "partneredRequiredMessage": "Additional features like images, menu, contact information, and amenities are only available for partnered barracas. Check the partnered checkbox to enable these options.",
+      "images": "Images (URLs)",
+      "menuPreview": "Menu Preview Items",
+      "contact": "Contact Information",
+      "whatsapp": "WhatsApp",
+      "email": "Email",
+      "instagram": "Instagram",
+      "amenities": "Amenities",
+      "ctaButtons": "Custom CTA Buttons",
+      "addImage": "Add Image",
+      "addItem": "Add Item",
+      "addAmenity": "Add Amenity",
+      "save": "Save Barraca",
+      "saving": "Saving...",
+      "cancel": "Cancel",
+      "selectNeighborhood": "Select neighborhood",
+      "required": "*"
+    },
+    "table": {
+      "barraca": "Barraca",
+      "location": "Location",
+      "availability": "Availability",
+      "partnered": "Partnered",
+      "notPartnered": "Not Partnered",
+      "updated": "Updated",
+      "actions": "Actions",
+      "email": "Email",
+      "subscribed": "Subscribed",
+      "preferences": "Preferences"
+    },
+    "pagination": {
+      "itemsPerPage": "Items per page",
+      "showing": "Showing {start}-{end} of {total} barracas",
+      "previous": "Previous",
+      "next": "Next"
+    },
+    "stats": {
+      "totalBarracas": "Total Barracas",
+      "currentlyOpen": "Currently Open",
+      "emailSubscribers": "Email Subscribers",
+      "uniqueLocations": "Unique Locations",
+      "openRate": "open rate",
+      "thisMonth": "+2 this month",
+      "thisWeek": "+15 this week",
+      "acrossRio": "Across Rio",
+      "barracasByLocation": "Barracas by Location",
+      "recentActivity": "Recent Activity",
+      "systemHealth": "System Health",
+      "uptime": "Uptime",
+      "activeSubscribers": "Active Subscribers"
+    }
+  },
+  "photos": {
+    "title": "Photo Galleries",
+    "description": "Browse our curated photo galleries featuring the best shots from our events. Every photo in our galleries is also available in our complete archive.",
+    "subtitle": "Relive the best moments from our beach gatherings and special events",
+    "googlePhotosArchive": "Google Photos Archive",
+    "googlePhotosDescription": "Access our complete photo collection on Google Photos",
+    "viewArchive": "View Archive",
+    "photos": "photos",
+    "noPhotos": "No photos available yet",
+    "noPhotosDescription": "Check back soon for new photo galleries",
+    "backToPhotos": "Back to Photos",
+    "galleryNotFound": "Gallery not found",
+    "downloadPhoto": "Download Photo",
+    "downloadAllPhotos": "Download All Photos",
+    "instagramTag": "Tag us on Instagram",
+    "instagramTagDescription": "If you share these photos on Instagram, please tag us @Carioca_Coastal_Club",
+    "gallery": "Gallery",
+    "archive": "Archive",
+    "galleryDescription": "Gallery shows our best shots. All photos available in archive.",
+    "allLocations": "All Locations",
+    "galleryInfo": "Gallery Information",
+    "galleryInfoDescription": "This gallery showcases our best shots from the event. Every photo displayed here is also available in our complete archive, where you can find all photos taken during this time."
+  },
+  "email": {
+    "subscribe": "Join Loyalty Program",
+    "placeholder": "Enter your email",
+    "submit": "Join Now",
+    "joining": "Joining...",
+    "welcome": "Welcome!",
+    "success": "Welcome to Carioca Coastal Club!",
+    "error": "Please enter a valid email address",
+    "failed": "Subscription failed. Please try again.",
+    "benefits": "Get chair reservations, status updates, and exclusive member offers"
+  },
+  "loyalty": {
+    "benefits": "Member Benefits",
+    "chairReservation": "Chair Reservation",
+    "exclusiveOffers": "Exclusive Offers",
+    "newBarracas": "New Barraca Updates"
+  },
+  "share": {
+    "title": "Share this barraca",
+    "message": "Check out {name} at {location}!",
+    "copied": "Link copied to clipboard!",
+    "sharing": "Sharing...",
+    "error": "Error sharing. Please try again.",
+    "shared_successfully": "Shared successfully!",
+    "share_error": "Error sharing. Please try again.",
+    "platforms": {
+      "whatsapp": "Share on WhatsApp",
+      "facebook": "Share on Facebook",
+      "twitter": "Share on Twitter",
+      "instagram": "Share on Instagram",
+      "copy": "Copy Link"
+    }
+  },
+  "home": {
+    "yourBarraca": "Your Barraca, Your Way",
+    "joinThousands": "Join thousands of loyal customers who use Carioca Coastal Club to stay connected with their favorite barracas",
+    "popularBarracas": "Popular Barracas",
+    "popularDescription": "These barracas are loved by our community - check if your favorite is open and reserve your spot",
+    "viewAllPartners": "View All Barracas",
+    "whyJoin": "Why Join Carioca Coastal Club?",
+    "whyJoinDescription": "More than just finding barracas - we're your connection to Rio's barraca culture",
+    "exclusiveBenefits": "Exclusive Member Benefits",
+    "exclusiveDescription": "Reserve chairs, get availability updates, discover new spots, and enjoy special offers from your favorite barracas",
+    "joinToday": "Join the Club Today",
+    "joinDescription": "Start enjoying member benefits at your favorite barracas. Get updates, reserve chairs, and never miss out on the perfect barraca day.",
+    "stats": {
+      "availabilityUpdates": "Availability Updates",
+      "neighborhoods": "Neighborhoods",
+      "partnerBarracas": "Partner Barracas"
+    },
+    "features": {
+      "chairReservations": {
+        "title": "Chair Reservations",
+        "description": "Reserve your favorite spot at participating barracas - never worry about finding a chair again"
+      },
+      "realTimeUpdates": {
+        "title": "Real-time Updates",
+        "description": "Get instant notifications when your favorite barraca opens, closes, or has special offers"
+      },
+      "exclusivePerks": {
+        "title": "Exclusive Member Perks",
+        "description": "Access special discounts, priority service, and member-only events at partner barracas"
+      },
+      "personalizedRecommendations": {
+        "title": "Personalized Recommendations",
+        "description": "Discover new barracas based on your preferences and get insider tips from locals"
+      }
+    },
+    "memberBenefits": {
+      "chair": "Chair",
+      "reservations": "Reservations",
+      "priority": "Priority",
+      "service": "Service",
+      "availability": "Availability",
+      "updates": "Updates",
+      "special": "Special",
+      "offers": "Offers"
+    },
+    "instagram": {
+      "title": "Follow Us on Instagram",
+      "description": "Get the latest new features, discounts and event info from your favorite barracas.",
+      "ctaButton": "Follow Us",
+      "followButton": "Follow @carioca_costal_club",
+      "benefits": {
+        "photos": "Feature Updates",
+        "updates": "Real-time Updates",
+        "exclusive": "Exclusive Content"
+      }
+    },
+    "footer": {
+      "description": "Connecting Rio's barraca lovers with their favorite spots through chair reservations, real-time updates, and exclusive member benefits.",
+      "quickLinks": "Quick Links",
+      "contact": "Contact",
+      "copyright": "© 2024 Carioca Coastal Club. All rights reserved.",
+      "companyName": "Carioca Coastal Club",
+      "loyaltyProgram": "Barraca Loyalty Program",
+      "location": "Rio de Janeiro, RJ"
+    }
+  },
+  "about": {
+    "title": "About Carioca Coastal Club",
+    "subtitle": "We're the loyalty platform connecting Rio's barraca lovers with their favorite spots. Check if your barraca is open, reserve chairs, and enjoy exclusive member benefits.",
+    "mission": "Our Mission",
+    "missionDescription": "To strengthen the bond between Rio's barraca community and their favorite spots. We believe loyal customers deserve better service, and barraca owners deserve loyal customers who keep coming back.",
+    "missionQuote": "Every barraca has its regulars - we help strengthen those relationships.",
+    "missionDetails": "Through chair reservations, real-time updates, and exclusive member perks, we make it easier for you to enjoy your favorite barraca spots while helping barracas build stronger customer loyalty.",
+    "whatWeStandFor": "What We Stand For",
+    "valuesDescription": "The values that drive our loyalty platform and community",
+    "values": {
+      "passion": {
+        "title": "Passion for Rio",
+        "description": "We love Rio de Janeiro and want to connect barraca lovers with their favorite spots."
+      },
+      "community": {
+        "title": "Community First",
+        "description": "Building loyalty between customers and barracas through better communication and service."
+      },
+      "convenience": {
+        "title": "Convenience",
+        "description": "Reserve chairs, get updates, and enjoy exclusive perks at participating barracas."
+      },
+      "benefits": {
+        "title": "Member Benefits",
+        "description": "Exclusive offers, priority service, and special events for loyal customers."
+      }
+    },
+    "stats": {
+      "partnerBarracas": "Partner Barracas",
+      "activeMembers": "Active Members",
+      "statusUpdates": "Status Updates",
+      "neighborhoods": "Neighborhoods"
+    },
+    "meetTeam": "Meet Our Team",
+    "teamDescription": "Barraca enthusiasts and tech experts working to strengthen Rio's barraca community",
+    "team": {
+      "vincent": {
+        "name": "Vincent Wilson",
+        "role": "Founder & CEO",
+        "bio": "Born and raised in the United States, Vincent brings over 5 years of experience in international business development and relationship building across diverse markets."
+      },
+      "hans": {
+        "name": "Hans Yadav",
+        "role": "CTO",
+        "bio": "Experienced technology leader with expertise in customer service systems and digital platform development."
+      },
+      "simon": {
+        "name": "Simon Paul",
+        "role": "Director of Operations",
+        "bio": "Tech enthusiast focused on creating seamless user experiences and optimizing operational processes."
+      },
+      "jordi": {
+        "name": "Jordi De Avila",
+        "role": "Business Operations Manager",
+        "bio": "Dedicated professional with expertise in business process optimization and customer relationship management."
+      },
+      "ricardo": {
+        "name": "Ricardo Del Razo",
+        "role": "Head of Special Partnerships",
+        "bio": "Strategic partnership expert with experience in developing and maintaining key business relationships."
+      },
+      "janeese": {
+        "name": "Janeesa Hollingshead",
+        "role": "CFO",
+        "bio": "Financial expert with extensive experience in strategic financial planning and business growth management."
+      },
+      "leticia": {
+        "name": "Leticia Castilhos",
+        "role": "Director of Social Media",
+        "bio": "Digital marketing specialist focused on building engaging online communities and driving brand awareness through social media."
+      }
+    },
+    "getInTouch": "Get in Touch",
+    "getInTouchDescription": "Questions about membership? Want to partner with us? We'd love to hear from you.",
+    "whatsapp": "WhatsApp",
+    "whatsappDescription": "Quick responses via WhatsApp",
+    "instagram": "Instagram",
+    "instagramDescription": "Follow us for daily updates",
+    "joinCommunity": "Join Our Community",
+    "joinCommunityDescription": "Get member updates, chair reservation alerts, and exclusive offers from partner barracas"
+  },
+  "discover": {
+    "title": "Find Your Barraca",
+    "subtitle": "Check if your favorite spot is open, reserve chairs, and discover new member benefits",
+    "searchPlaceholder": "# or name",
+    "resultsFound": "Partner",
+    "barracas": "Barracas",
+    "barraca": "Barraca",
+    "found": "Found",
+    "noResults": "No barracas found",
+    "noResultsMessage": "No results for \"{query}\". # or name",
+    "adjustCriteria": "Try adjusting your search criteria or filters.",
+    "clearAllFilters": "Clear All Filters",
+    "filters": {
+      "all": "All",
+      "open": "Open",
+      "closed": "Closed",
+      "allRatings": "All Ratings",
+      "excellent": "Excellent",
+      "great": "Great",
+      "good": "Good"
+    }
+  },
+  "stories": {
+    "title": "Stories",
+    "new": "new",
+    "viewStories": "View {name} stories"
+  },
+  "visitor": {
+    "totalUnique": "Total Unique Visitors Since Launch",
+    "totalUsers": "Total Users (30 days)",
+    "realTime": "Real-time counter",
+    "activeNow": "active now",
+    "fromGA4": "From Google Analytics"
+  },
+  "common": {
+    "loading": "Loading...",
+    "error": "Error",
+    "success": "Success",
+    "cancel": "Cancel",
+    "save": "Save",
+    "delete": "Delete",
+    "edit": "Edit",
+    "add": "Add",
+    "remove": "Remove",
+    "close": "Close",
+    "back": "Back",
+    "more": "More",
+    "less": "Less",
+    "showMore": "Show More",
+    "showLess": "Show Less",
+    "required": "Required",
+    "optional": "Optional"
+  },
+  "cta": {
+    "reserve": "Reserve",
+    "details": "Details",
+    "contact": "Contact",
+    "menu": "Menu",
+    "whatsapp": "WhatsApp",
+    "instagram": "Instagram"
+  },
+  "languages": {
+    "english": "English",
+    "portuguese": "Português",
+    "spanish": "Español",
+    "french": "Français"
+  },
+  "registration": {
+    "title": "Register Your Barraca",
+    "subtitle": "Register your barraca so we can work together. Fill out the form below to get started.",
+    "form": {
+      "basicInfo": "Basic Information",
+      "name": "Barraca Name",
+      "namePlaceholder": "Enter your barraca name",
+      "ownerName": "Owner Name",
+      "ownerNamePlaceholder": "Enter owner's full name",
+      "barracaNumber": "Barraca Number",
+      "barracaNumberPlaceholder": "e.g., 1, 2",
+      "nearestPosto": "Nearest Posto",
+      "selectPosto": "Select a posto",
+      "location": "Location",
+      "locationPlaceholder": "Enter your location or neighborhood",
+      "description": "Description",
+      "descriptionPlaceholder": "Tell us about your barraca, specialties, and what makes it unique",
+      "contactInfo": "Contact Information",
+      "phone": "Phone Number",
+      "phonePlaceholder": "Enter your phone number",
+      "email": "Email Address",
+      "emailPlaceholder": "Enter your email address",
+      "instagram": "Instagram Handle",
+      "instagramPlaceholder": "@yourbarraca",
+      "website": "Website",
+      "websitePlaceholder": "https://yourwebsite.com",
+      "hours": "Operating Hours",
+      "typicalHours": "Typical Hours",
+      "typicalHoursPlaceholder": "e.g., 9:00 - 18:00",
+      "weekendHoursEnabled": "Different Weekend Hours",
+      "weekendHours": "Weekend Hours",
+      "friday": "Friday",
+      "saturday": "Saturday",
+      "sunday": "Sunday",
+      "open": "Open",
+      "close": "Close",
+      "menu": "Menu & Specialties",
+      "menuPreview": "Menu Preview Items",
+      "menuPreviewPlaceholder": "Add your most popular dishes",
+      "addMenuItem": "Add Menu Item",
+      "removeMenuItem": "Remove",
+      "amenities": "Amenities",
+      "amenitiesPlaceholder": "What services do you offer?",
+      "addAmenity": "Add Amenity",
+      "removeAmenity": "Remove",
+      "vibe": "Vibe & Atmosphere",
+      "vibeDescription": "Select the type of vibe and atmosphere your barraca provides",
+      "customVibe": "Custom Vibe Types",
+      "customVibePlaceholder": "Custom vibe type",
+      "addCustomVibe": "Add Custom Vibe Type",
+      "remove": "Remove",
+      "defaultPhoto": "Default Photo",
+      "defaultPhotoDescription": "Upload a high-resolution photo that showcases what makes your barraca unique",
+      "partnership": "Partnership Opportunities",
+      "partnershipDescription": "Optional: Let us know if you're interested in these partnership opportunities",
+      "qrCodes": "QR Codes on Furniture",
+      "qrCodesDescription": "Would you be willing to add QR codes for our website on your chairs and tables?",
+      "repeatDiscounts": "Repeat Customer Discounts",
+      "repeatDiscountsDescription": "Would you offer discounts for repeat customers through our platform?",
+      "hotelPartnerships": "Hotel Partnerships",
+      "hotelPartnershipsDescription": "Would you partner with hotels for special rates for their guests?",
+      "contentCreation": "Content Creation",
+      "contentCreationDescription": "Would you be willing to produce content together for Instagram/TikTok?",
+      "onlineOrders": "Online Orders",
+      "onlineOrdersDescription": "Would you be willing to take orders via our site (orders sent to your WhatsApp)?",
+      "selectAllPartnerships": "Select All Partnerships",
+      "clearAllPartnerships": "Clear All Partnerships",
+      "contactPreferences": "Contact Preferences",
+      "contactPreferencesDescription": "Optional: Let us know if you're willing to be contacted for photos and status updates",
+      "contactForPhotos": "Contact for Photos",
+      "contactForPhotosDescription": "Can we contact you via WhatsApp or Instagram to collect photos of your barraca?",
+      "contactForStatus": "Contact for Status Updates",
+      "contactForStatusDescription": "Can we contact you for open/closed status updates?",
+      "selectAllPreferences": "Select All Preferences",
+      "clearAllPreferences": "Clear All Preferences",
+      "partnershipsSelected": "{{count}} of 5 partnerships selected",
+      "preferencesSelected": "{{count}} of 2 preferences selected",
+      "clickToChangePhoto": "Click to change photo",
+      "clickToUpload": "Click to upload",
+      "dragAndDrop": "or drag and drop",
+      "fileTypes": "PNG, JPG, GIF up to 10MB",
+      "fileSizeError": "File size must be less than 10MB",
+      "preferredContactMethod": "Preferred Contact Method",
+      "selectContactMethod": "Select your preferred contact method",
+      "whatsapp": "WhatsApp",
+      "instagram": "Instagram",
+      "email": "Email",
+      "englishFluency": "English Fluency",
+      "englishFluencyDescription": "Do you have someone on staff who's fluent in English?",
+      "englishFluencyNo": "No",
+      "englishFluencyNotFluent": "Not fluent",
+      "englishFluencyFluent": "Fluent",
+      "englishSpeakerNames": "English Speaker Names",
+      "englishSpeakerNamesPlaceholder": "Enter the name(s) of English-speaking staff members",
+      "tabSystem": "Tab System",
+      "tabSystemDescription": "How do you track what was ordered by a person or group of people?",
+      "tabSystemNameOnly": "Name only",
+      "tabSystemIndividualPaper": "Individual paper tab",
+      "tabSystemNumberOnChair": "Number on chair",
+      "tabSystemDigital": "Digital (app or system-based tracking)",
+      "additionalInfo": "Additional Information",
+      "additionalInfoPlaceholder": "Any other information you'd like to share",
+      "submit": "Submit Registration",
+      "submitting": "Submitting...",
+      "success": "Registration Submitted Successfully!",
+      "successMessage": "Thank you for registering your barraca! We will review your information and contact you soon.",
+      "error": "Registration Failed",
+      "errorMessage": "Failed to submit registration. Please try again.",
+      "required": "This field is required",
+      "invalidEmail": "Please enter a valid email address",
+      "invalidPhone": "Please enter a valid phone number"
+    },
+    "neighborhoods": {
+      "copacabana": "Copacabana",
+      "ipanema": "Ipanema",
+      "leblon": "Leblon",
+      "barra": "Barra da Tijuca",
+      "recreio": "Recreio dos Bandeirantes",
+      "other": "Other"
+    },
+    "amenities": {
+      "chairs": "Beach Chairs",
+      "umbrellas": "Umbrellas",
+      "food": "Food Service",
+      "drinks": "Drinks",
+      "music": "Live Music",
+      "wifi": "Wi-Fi",
+      "parking": "Parking",
+      "shower": "Shower",
+      "bathroom": "Bathroom",
+      "creditCard": "Credit Card Accepted",
+      "delivery": "Delivery Service",
+      "reservations": "Reservations",
+      "WiFi": "Wi-Fi",
+      "Shower": "Shower",
+      "Food": "Food",
+      "Lockers": "Lockers"
+    },
+    "vibes": {
+      "familyFriendly": "Family Friendly",
+      "lgbtq": "LGBTQ+",
+      "relaxed": "Relaxed",
+      "volleyball": "Volleyball",
+      "frescoball": "Frescoball",
+      "party": "Party",
+      "sports": "Sports",
+      "romantic": "Romantic",
+      "quiet": "Quiet",
+      "beachGames": "Beach Games",
+      "fitness": "Fitness"
+    }
+  },
+  "adminRegistrations": {
+    "title": "Barraca Registrations",
+    "subtitle": "Review and manage barraca registration submissions",
+    "stats": {
+      "total": "Total Registrations",
+      "pending": "Pending Review",
+      "approved": "Approved",
+      "rejected": "Rejected"
+    },
+    "filters": {
+      "all": "All",
+      "pending": "Pending",
+      "approved": "Approved",
+      "rejected": "Rejected"
+    },
+    "table": {
+      "name": "Name",
+      "location": "Location",
+      "contact": "Contact",
+      "submitted": "Submitted",
+      "status": "Status",
+      "actions": "Actions"
+    },
+    "status": {
+      "pending": "Pending",
+      "approved": "Approved",
+      "rejected": "Rejected"
+    },
+    "actions": {
+      "view": "View Details",
+      "approve": "Approve",
+      "reject": "Reject",
+      "delete": "Delete",
+      "convert": "Convert to Barraca"
+    },
+    "modal": {
+      "title": "Registration Details",
+      "basicInfo": "Basic Information",
+      "contactInfo": "Contact Information",
+      "hours": "Operating Hours",
+      "menu": "Menu & Amenities",
+      "additionalInfo": "Additional Information",
+      "adminNotes": "Admin Notes",
+      "adminNotesPlaceholder": "Add notes about this registration...",
+      "approve": "Approve Registration",
+      "reject": "Reject Registration",
+      "approving": "Approving...",
+      "rejecting": "Rejecting...",
+      "deleting": "Deleting...",
+      "close": "Close"
+    },
+    "messages": {
+      "approved": "Registration approved successfully",
+      "rejected": "Registration rejected",
+      "deleted": "Registration deleted",
+      "converted": "Registration converted to barraca successfully",
+      "error": "An error occurred. Please try again."
+    },
+    "noRegistrations": "No registrations found",
+    "loading": "Loading registrations..."
+  },
+  "marquee": {
+    "title": "Thank you for registering",
+    "loading": "Loading registered barracas..."
+  },
+  "toast": {
+    "success": "Registration submitted successfully!",
+    "error": "Error submitting registration. Please try again.",
+    "loading": "Submitting registration..."
+  },
+  "emailSubscription": {
+    "title": "Stay Connected",
+    "description": "Get notified about new events and promotions"
+  }
+}

@@ -1,4 +1,4 @@
-import React, { createContext, useContext, ReactNode } from 'react';
+import React, { createContext, useContext, ReactNode, useEffect } from 'react';
 import { Provider, useSelector, useDispatch } from 'react-redux';
 import { store, RootState, AppDispatch } from '../store';
 import { 
@@ -14,6 +14,8 @@ import {
   setError, 
   clearError 
 } from '../store/slices/appSlice';
+import { BarracaService } from '../services/barracaService';
+import { environmentInfo } from '../lib/supabase';
 
 // Context interface
 interface AppContextType {
@@ -84,20 +86,170 @@ const AppContextInner: React.FC<{ children: ReactNode }> = ({ children }) => {
   const isLoading = useSelector((state: RootState) => state.app.isLoading);
   const error = useSelector((state: RootState) => state.app.error);
 
+  // Load sample data for testing when in mock mode
+  const loadSampleData = () => {
+    if (!environmentInfo.hasValidConfig) {
+      console.log('Loading sample data for testing...');
+      
+      const sampleBarracas = [
+        {
+          id: 'sample-1',
+          name: 'Barraca do João',
+          barracaNumber: '15',
+          location: 'Copacabana Beach',
+          coordinates: { lat: -22.9707, lng: -43.1824 },
+          isOpen: true,
+          typicalHours: { open: '08:00', close: '18:00' },
+          description: 'Traditional Brazilian beach food',
+          photos: { horizontal: ['/api/placeholder/600/400'], vertical: [] },
+          menuPreview: ['Coconut water', 'Grilled cheese', 'Fresh fruit'],
+          contact: { phone: '+55 21 99999-9999' },
+          amenities: ['Umbrella', 'Chairs', 'WiFi'],
+          weatherDependent: true,
+          partnered: true,
+          weekendHoursEnabled: true,
+          weekendHours: { friday: { open: '08:00', close: '20:00' } },
+          manualStatus: 'undefined' as const,
+          specialAdminOverride: false,
+          specialAdminOverrideExpires: null,
+          rating: 3 as const,
+          ctaButtons: [],
+          createdAt: new Date('2024-01-01'),
+          updatedAt: new Date('2024-01-15')
+        },
+        {
+          id: 'sample-2',
+          name: 'Barraca da Maria',
+          barracaNumber: '22',
+          location: 'Ipanema Beach',
+          coordinates: { lat: -22.9871, lng: -43.2014 },
+          isOpen: false,
+          typicalHours: { open: '09:00', close: '17:00' },
+          description: 'Fresh seafood and drinks',
+          photos: { horizontal: ['/api/placeholder/600/400'], vertical: [] },
+          menuPreview: ['Fresh fish', 'Caipirinha', 'Beer'],
+          contact: { phone: '+55 21 98888-8888' },
+          amenities: ['Umbrella', 'Chairs'],
+          weatherDependent: false,
+          partnered: false,
+          weekendHoursEnabled: false,
+          weekendHours: {},
+          manualStatus: 'undefined' as const,
+          specialAdminOverride: false,
+          specialAdminOverrideExpires: null,
+          rating: 2 as const,
+          ctaButtons: [],
+          createdAt: new Date('2024-01-05'),
+          updatedAt: new Date('2024-01-10')
+        },
+        {
+          id: 'sample-3',
+          name: 'Barraca do Pedro',
+          barracaNumber: '8',
+          location: 'Leblon Beach',
+          coordinates: { lat: -22.9871, lng: -43.2014 },
+          isOpen: true,
+          typicalHours: { open: '07:00', close: '19:00' },
+          description: 'Best acai bowls in town',
+          photos: { horizontal: ['/api/placeholder/600/400'], vertical: [] },
+          menuPreview: ['Acai bowl', 'Smoothies', 'Fresh juices'],
+          contact: { phone: '+55 21 97777-7777' },
+          amenities: ['Umbrella', 'Chairs', 'WiFi', 'Credit card'],
+          weatherDependent: true,
+          partnered: true,
+          weekendHoursEnabled: true,
+          weekendHours: { saturday: { open: '08:00', close: '20:00' } },
+          manualStatus: 'undefined' as const,
+          specialAdminOverride: false,
+          specialAdminOverrideExpires: null,
+          rating: 3 as const,
+          ctaButtons: [],
+          createdAt: new Date('2024-01-10'),
+          updatedAt: new Date('2024-01-20')
+        }
+      ];
+
+      const sampleEmails = [
+        {
+          email: 'john@example.com',
+          subscribedAt: new Date('2024-01-01'),
+          preferences: { newBarracas: true, specialOffers: true }
+        },
+        {
+          email: 'maria@example.com',
+          subscribedAt: new Date('2024-01-05'),
+          preferences: { newBarracas: false, specialOffers: true }
+        },
+        {
+          email: 'pedro@example.com',
+          subscribedAt: new Date('2024-01-10'),
+          preferences: { newBarracas: true, specialOffers: false }
+        }
+      ];
+
+      dispatch(setBarracas(sampleBarracas));
+      dispatch(setEmailSubscriptions(sampleEmails));
+      
+      console.log('Sample data loaded successfully');
+    }
+  };
+
+  // Load data when admin status changes
+  useEffect(() => {
+    if (isAdmin || isSpecialAdmin) {
+      if (environmentInfo.hasValidConfig) {
+        refreshBarracas();
+      } else {
+        loadSampleData();
+      }
+    }
+  }, [isAdmin, isSpecialAdmin]);
+
   // Mock implementations for missing functionality
   const adminLogin = async (email: string, password: string) => {
-    // TODO: Implement actual admin login logic
-    console.log('Admin login:', email, password);
-    dispatch(setAdminStatus({ isAdmin: true, isSpecialAdmin: false }));
+    try {
+      dispatch(setLoading(true));
+      dispatch(clearError());
+      
+      // TODO: Implement actual admin login logic
+      console.log('Admin login:', email, password);
+      
+      // For now, just set admin status and let the useEffect handle data loading
+      dispatch(setAdminStatus({ isAdmin: true, isSpecialAdmin: false }));
+      
+    } catch (error) {
+      console.error('Login failed:', error);
+      dispatch(setError('Login failed. Please check your credentials.'));
+      throw error;
+    } finally {
+      dispatch(setLoading(false));
+    }
   };
 
   const adminLogout = () => {
     dispatch(setAdminStatus({ isAdmin: false, isSpecialAdmin: false }));
+    // Clear data on logout
+    dispatch(setBarracas([]));
+    dispatch(setEmailSubscriptions([]));
   };
 
   const refreshBarracas = async () => {
-    // TODO: Implement actual barraca refresh logic
-    console.log('Refreshing barracas...');
+    try {
+      dispatch(setLoading(true));
+      dispatch(clearError());
+      
+      console.log('Refreshing barracas...');
+      const result = await BarracaService.getAllUnpaginated();
+      dispatch(setBarracas(result));
+      
+      console.log(`Loaded ${result.length} barracas`);
+      
+    } catch (error) {
+      console.error('Failed to refresh barracas:', error);
+      dispatch(setError('Failed to load barracas. Please try again.'));
+    } finally {
+      dispatch(setLoading(false));
+    }
   };
 
   const contextValue: AppContextType = {

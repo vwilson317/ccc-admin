@@ -25,7 +25,9 @@ const Admin: React.FC = () => {
     setWeatherOverride,
     weatherOverride,
     overrideExpiry,
-    refreshBarracas
+    refreshBarracas,
+    isLoading,
+    error
   } = useApp();
   // const { trackAdminLogin, trackAdminAction } = useAnalytics();
   const trackAdminLogin = (action: string, details?: string) => {
@@ -452,6 +454,23 @@ const Admin: React.FC = () => {
         {/* Content */}
         {activeTab === 'barracas' && (
           <div>
+            {isLoading && (
+              <div className="mb-6 p-4 bg-blue-50 border border-blue-200 rounded-lg">
+                <div className="flex items-center">
+                  <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-blue-600 mr-3"></div>
+                  <span className="text-blue-800">Loading barracas...</span>
+                </div>
+              </div>
+            )}
+            
+            {error && (
+              <div className="mb-6 p-4 bg-red-50 border border-red-200 rounded-lg">
+                <div className="flex items-center">
+                  <span className="text-red-800">{error}</span>
+                </div>
+              </div>
+            )}
+            
             <div className="flex justify-between items-center mb-6">
               <div className="flex items-center space-x-4">
                 <h2 className="text-xl font-semibold text-gray-900" data-lingo-skip>

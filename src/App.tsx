@@ -1,6 +1,7 @@
 import React from "react";
 import { Routes, Route } from "react-router-dom";
 import Admin from "./pages/Admin";
+import RegistrationDetail from "./pages/RegistrationDetail";
 
 function App() {
   return (
@@ -8,6 +9,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Admin />} />
         <Route path="/admin" element={<Admin />} />
+        <Route path="/registration/:id" element={<RegistrationDetail />} />
       </Routes>
     </div>
   );

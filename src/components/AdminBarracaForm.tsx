@@ -16,20 +16,25 @@ const AdminBarracaForm: React.FC<AdminBarracaFormProps> = ({ barracaId, onCancel
   
   const [formData, setFormData] = useState({
     name: '',
+    ownerName: '',
     barracaNumber: '',
     location: '',
     coordinates: { lat: -22.9711, lng: -43.1822 },
     isOpen: true,
     typicalHours: '9:00 - 18:00',
     description: '',
+    nearestPosto: '',
     photos: { horizontal: [''], vertical: [''] },
     menuPreview: [''],
     contact: {
       phone: '',
       email: '',
-      website: ''
+      website: '',
+      instagram: ''
     },
     amenities: [''],
+    environment: [] as string[],
+    additionalInfo: '',
     weatherDependent: false,
     partnered: false,
     weekendHoursEnabled: false,
@@ -41,7 +46,22 @@ const AdminBarracaForm: React.FC<AdminBarracaFormProps> = ({ barracaId, onCancel
     specialAdminOverride: false,
     specialAdminOverrideExpires: null as Date | null,
     rating: undefined as 1 | 2 | 3 | undefined,
-    ctaButtons: [] as CTAButtonConfig[]
+    ctaButtons: [] as CTAButtonConfig[],
+    // Partnership opportunities
+    qrCodes: false,
+    repeatDiscounts: false,
+    hotelPartnerships: false,
+    contentCreation: false,
+    onlineOrders: false,
+    // Contact preferences
+    contactForPhotos: false,
+    contactForStatus: false,
+    preferredContactMethod: 'whatsapp' as 'whatsapp' | 'instagram' | 'email',
+    // English fluency
+    englishFluency: 'no' as 'no' | 'not_fluent' | 'fluent',
+    englishSpeakerNames: '',
+    // Tab system
+    tabSystem: 'name_only' as 'name_only' | 'individual_paper' | 'number_on_chair' | 'digital'
   });
 
   const [isSaving, setIsSaving] = useState(false);
@@ -287,7 +307,7 @@ const AdminBarracaForm: React.FC<AdminBarracaFormProps> = ({ barracaId, onCancel
       };
 
       if (barracaId) {
-        await updateBarraca(barracaId, barracaData);
+        await updateBarraca({ ...barracaData, id: barracaId });
         setSaveMessage({ type: 'success', text: 'Barraca updated successfully!' });
       } else {
         await addBarraca(barracaData);
@@ -322,7 +342,7 @@ const AdminBarracaForm: React.FC<AdminBarracaFormProps> = ({ barracaId, onCancel
     } else {
       setFormData(prev => ({
         ...prev,
-        [field]: [...prev[field], '']
+        [field]: [...(prev[field] as string[]), '']
       }));
     }
   };
@@ -345,7 +365,7 @@ const AdminBarracaForm: React.FC<AdminBarracaFormProps> = ({ barracaId, onCancel
     } else {
       setFormData(prev => ({
         ...prev,
-        [field]: prev[field].map((item, i) => i === index ? value : item)
+        [field]: (prev[field] as string[]).map((item: string, i: number) => i === index ? value : item)
       }));
     }
   };
@@ -362,7 +382,7 @@ const AdminBarracaForm: React.FC<AdminBarracaFormProps> = ({ barracaId, onCancel
     } else {
       setFormData(prev => ({
         ...prev,
-        [field]: prev[field].filter((_, i) => i !== index)
+        [field]: (prev[field] as string[]).filter((_: string, i: number) => i !== index)
       }));
     }
   };
@@ -371,7 +391,7 @@ const AdminBarracaForm: React.FC<AdminBarracaFormProps> = ({ barracaId, onCancel
     setFormData(prev => ({
       ...prev,
       environment: prev.environment.includes(environmentType)
-        ? prev.environment.filter(e => e !== environmentType)
+        ? prev.environment.filter((e: string) => e !== environmentType)
         : [...prev.environment, environmentType]
     }));
   };

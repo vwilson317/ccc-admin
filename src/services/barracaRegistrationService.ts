@@ -1,7 +1,6 @@
 import { supabase } from '../lib/supabase';
 import { BarracaRegistration } from '../types';
 import { v4 as uuidv4 } from 'uuid';
-import { WhatsAppNotificationService } from './whatsappNotificationService';
 
 // Transform registration data to database format
 const transformRegistrationToDB = (registration: Omit<BarracaRegistration, 'id' | 'submittedAt' | 'status'>): any => ({
@@ -266,7 +265,7 @@ export class BarracaRegistrationService {
         partnered: false, // Default to non-partnered
         weekendHoursEnabled: registration.weekendHoursEnabled || false,
         weekendHours: registration.weekendHours || undefined,
-        manualStatus: 'undefined',
+        manualStatus: 'undefined' as const,
         specialAdminOverride: false,
         specialAdminOverrideExpires: null,
         rating: undefined,
@@ -329,9 +328,9 @@ export class BarracaRegistrationService {
 
       const stats = {
         total: data?.length || 0,
-        pending: data?.filter(r => r.status === 'pending').length || 0,
-        approved: data?.filter(r => r.status === 'approved').length || 0,
-        rejected: data?.filter(r => r.status === 'rejected').length || 0
+        pending: data?.filter((r: any) => r.status === 'pending').length || 0,
+        approved: data?.filter((r: any) => r.status === 'approved').length || 0,
+        rejected: data?.filter((r: any) => r.status === 'rejected').length || 0
       };
 
       return stats;

@@ -18,6 +18,7 @@ import {
   clearError 
 } from '../store/slices/appSlice';
 import { BarracaService } from '../services/barracaService';
+import { EmailSubscriptionService } from '../services/emailSubscriptionService';
 import { environmentInfo } from '../lib/supabase';
 import { isSessionValid } from '../utils/sessionUtils';
 
@@ -54,6 +55,7 @@ interface AppContextType {
   updateBarraca: (barraca: any) => void;
   deleteBarraca: (id: string) => void;
   refreshBarracas: () => Promise<void>;
+  refreshEmailSubscriptions: () => Promise<void>;
   
   // UI state
   isLoading: boolean;
@@ -231,6 +233,7 @@ const AppContextInner: React.FC<{ children: ReactNode }> = ({ children }) => {
     if (isAdmin || isSpecialAdmin) {
       if (environmentInfo.hasValidConfig) {
         refreshBarracas();
+        refreshEmailSubscriptions();
       } else {
         loadSampleData();
       }
@@ -292,6 +295,20 @@ const AppContextInner: React.FC<{ children: ReactNode }> = ({ children }) => {
     }
   };
 
+  const refreshEmailSubscriptions = async () => {
+    try {
+      console.log('Refreshing email subscriptions...');
+      const result = await EmailSubscriptionService.getAll();
+      dispatch(setEmailSubscriptions(result));
+      
+      console.log(`Loaded ${result.length} email subscriptions`);
+      
+    } catch (error) {
+      console.error('Failed to refresh email subscriptions:', error);
+      // Don't set error for email subscriptions as it's not critical
+    }
+  };
+
   const contextValue: AppContextType = {
     // Weather and environment
     weatherOverride,
@@ -315,6 +332,7 @@ const AppContextInner: React.FC<{ children: ReactNode }> = ({ children }) => {
     updateBarraca: (barraca: any) => dispatch(updateBarracaAction(barraca)),
     deleteBarraca: (id: string) => dispatch(deleteBarracaAction(id)),
     refreshBarracas,
+    refreshEmailSubscriptions,
     
     // UI state
     isLoading,

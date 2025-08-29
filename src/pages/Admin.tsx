@@ -27,6 +27,7 @@ const Admin: React.FC = () => {
     weatherOverride,
     overrideExpiry,
     refreshBarracas,
+    refreshEmailSubscriptions,
     isLoading,
     error
   } = useApp();
@@ -48,6 +49,7 @@ const Admin: React.FC = () => {
   const [showForm, setShowForm] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [copiedId, setCopiedId] = useState<string | null>(null);
+  const [isRefreshingEmails, setIsRefreshingEmails] = useState(false);
   
   // Pagination state
   const [currentPage, setCurrentPage] = useState(1);
@@ -796,9 +798,32 @@ const Admin: React.FC = () => {
 
         {activeTab === 'emails' && (
           <div className="bg-white rounded-2xl shadow-lg p-6">
-            <h2 className="text-xl font-semibold text-gray-900 mb-6" data-lingo-skip>
-              {t('admin.emails')}
-            </h2>
+            <div className="flex justify-between items-center mb-6">
+              <h2 className="text-xl font-semibold text-gray-900" data-lingo-skip>
+                {t('admin.emails')}
+              </h2>
+              <button
+                onClick={async () => {
+                  setIsRefreshingEmails(true);
+                  try {
+                    await refreshEmailSubscriptions();
+                  } finally {
+                    setIsRefreshingEmails(false);
+                  }
+                }}
+                disabled={isRefreshingEmails}
+                className="bg-gradient-to-r from-beach-500 to-beach-600 text-white px-4 py-2 rounded-lg hover:from-beach-600 hover:to-beach-700 transition-all duration-200 shadow-lg flex items-center disabled:opacity-50 disabled:cursor-not-allowed"
+              >
+                {isRefreshingEmails ? (
+                  <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white mr-2"></div>
+                ) : (
+                  <svg className="h-4 w-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+                  </svg>
+                )}
+                {isRefreshingEmails ? 'Refreshing...' : 'Refresh'}
+              </button>
+            </div>
             <div className="overflow-x-auto">
               <table className="min-w-full divide-y divide-gray-200">
                 <thead className="bg-gray-50">
@@ -815,30 +840,41 @@ const Admin: React.FC = () => {
                   </tr>
                 </thead>
                 <tbody className="bg-white divide-y divide-gray-200">
-                  {emailSubscriptions.map((subscription, index) => (
-                    <tr key={index} className="hover:bg-gray-50">
-                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
-                        {subscription.email}
-                      </td>
-                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                        {subscription.subscribedAt.toLocaleDateString()}
-                      </td>
-                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                        <div className="flex space-x-2">
-                          {subscription.preferences.newBarracas && (
-                            <span className="bg-green-100 text-green-800 px-2 py-1 rounded-full text-xs" data-lingo-skip>
-                              New Spots
-                            </span>
-                          )}
-                          {subscription.preferences.specialOffers && (
-                            <span className="bg-purple-100 text-purple-800 px-2 py-1 rounded-full text-xs" data-lingo-skip>
-                              Offers
-                            </span>
-                          )}
+                  {emailSubscriptions.length === 0 ? (
+                    <tr>
+                      <td colSpan={3} className="px-6 py-12 text-center">
+                        <div className="text-gray-500">
+                          <p className="text-lg font-medium mb-2">No email subscriptions found</p>
+                          <p className="text-sm">No active email subscriptions in the database</p>
                         </div>
                       </td>
                     </tr>
-                  ))}
+                  ) : (
+                    emailSubscriptions.map((subscription, index) => (
+                      <tr key={index} className="hover:bg-gray-50">
+                        <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                          {subscription.email}
+                        </td>
+                        <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                          {subscription.subscribedAt.toLocaleDateString()}
+                        </td>
+                        <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                          <div className="flex space-x-2">
+                            {subscription.preferences.newBarracas && (
+                              <span className="bg-green-100 text-green-800 px-2 py-1 rounded-full text-xs" data-lingo-skip>
+                                New Spots
+                              </span>
+                            )}
+                            {subscription.preferences.specialOffers && (
+                              <span className="bg-purple-100 text-purple-800 px-2 py-1 rounded-full text-xs" data-lingo-skip>
+                                Offers
+                              </span>
+                            )}
+                          </div>
+                        </td>
+                      </tr>
+                    ))
+                  )}
                 </tbody>
               </table>
             </div>

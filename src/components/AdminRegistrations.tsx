@@ -20,18 +20,24 @@ const AdminRegistrations: React.FC<AdminRegistrationsProps> = ({ onRegistrationC
   const [showModal, setShowModal] = useState(false);
   const [processing, setProcessing] = useState(false);
   const [adminNotes, setAdminNotes] = useState('');
+  const [currentPage, setCurrentPage] = useState(1);
+  const [totalPages, setTotalPages] = useState(1);
+  const [totalCount, setTotalCount] = useState(0);
+  const [pageSize] = useState(5);
 
   useEffect(() => {
     loadRegistrations();
     loadStats();
-  }, [selectedStatus]);
+  }, [selectedStatus, currentPage]);
 
   const loadRegistrations = async () => {
     try {
       setLoading(true);
       const status = selectedStatus === 'all' ? undefined : selectedStatus;
-      const { registrations: data } = await BarracaRegistrationService.getAll(1, 50, status);
+      const { registrations: data, total } = await BarracaRegistrationService.getAll(currentPage, pageSize, status);
       setRegistrations(data);
+      setTotalCount(total);
+      setTotalPages(Math.ceil(total / pageSize));
     } catch (error) {
       console.error('Error loading registrations:', error);
     } finally {
@@ -137,6 +143,15 @@ const AdminRegistrations: React.FC<AdminRegistrationsProps> = ({ onRegistrationC
     }
   };
 
+  const handlePageChange = (page: number) => {
+    setCurrentPage(page);
+  };
+
+  const handleStatusChange = (status: 'all' | 'pending' | 'approved' | 'rejected') => {
+    setSelectedStatus(status);
+    setCurrentPage(1); // Reset to first page when changing status
+  };
+
   const formatDate = (date: Date) => {
     return new Intl.DateTimeFormat('en-US', {
       year: 'numeric',
@@ -233,7 +248,7 @@ const AdminRegistrations: React.FC<AdminRegistrationsProps> = ({ onRegistrationC
         {(['all', 'pending', 'approved', 'rejected'] as const).map(status => (
           <button
             key={status}
-            onClick={() => setSelectedStatus(status)}
+            onClick={() => handleStatusChange(status)}
             className={`flex-shrink-0 px-3 py-2 sm:px-4 rounded-lg font-medium transition-colors text-sm sm:text-base whitespace-nowrap ${
               selectedStatus === status
                 ? 'bg-beach-600 text-white'
@@ -244,6 +259,64 @@ const AdminRegistrations: React.FC<AdminRegistrationsProps> = ({ onRegistrationC
           </button>
         ))}
       </div>
+
+      {/* Pagination */}
+      {totalPages > 1 && (
+        <div className="bg-white rounded-lg shadow-sm border p-4">
+          <div className="flex items-center justify-between">
+            <div className="text-sm text-gray-700">
+              Showing {((currentPage - 1) * pageSize) + 1} to {Math.min(currentPage * pageSize, totalCount)} of {totalCount} registrations
+            </div>
+            <div className="flex items-center space-x-2">
+              <button
+                onClick={() => handlePageChange(currentPage - 1)}
+                disabled={currentPage === 1}
+                className="px-3 py-2 text-sm font-medium text-gray-500 bg-white border border-gray-300 rounded-md hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed"
+              >
+                Previous
+              </button>
+              
+              {/* Page numbers */}
+              <div className="flex items-center space-x-1">
+                {Array.from({ length: Math.min(5, totalPages) }, (_, i) => {
+                  let pageNum;
+                  if (totalPages <= 5) {
+                    pageNum = i + 1;
+                  } else if (currentPage <= 3) {
+                    pageNum = i + 1;
+                  } else if (currentPage >= totalPages - 2) {
+                    pageNum = totalPages - 4 + i;
+                  } else {
+                    pageNum = currentPage - 2 + i;
+                  }
+                  
+                  return (
+                    <button
+                      key={pageNum}
+                      onClick={() => handlePageChange(pageNum)}
+                      className={`px-3 py-2 text-sm font-medium rounded-md ${
+                        currentPage === pageNum
+                          ? 'bg-beach-600 text-white'
+                          : 'text-gray-500 bg-white border border-gray-300 hover:bg-gray-50'
+                      }`}
+                    >
+                      {pageNum}
+                    </button>
+                  );
+                })}
+              </div>
+              
+              <button
+                onClick={() => handlePageChange(currentPage + 1)}
+                disabled={currentPage === totalPages}
+                className="px-3 py-2 text-sm font-medium text-gray-500 bg-white border border-gray-300 rounded-md hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed"
+              >
+                Next
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
 
       {/* Registrations List */}
       <div className="bg-white rounded-lg shadow-sm border overflow-hidden">

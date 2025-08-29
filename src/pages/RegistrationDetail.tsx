@@ -193,6 +193,33 @@ const RegistrationDetail: React.FC = () => {
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           {/* Main Content */}
           <div className="lg:col-span-2 space-y-6">
+            {/* Photo */}
+            {registration.defaultPhoto && (
+              <div className="bg-white rounded-lg shadow-sm border p-6">
+                <h2 className="text-xl font-semibold mb-4">Photo</h2>
+                <div className="flex justify-center">
+                  <div className="relative w-80 h-60 bg-gray-100 rounded-lg overflow-hidden shadow-md">
+                    <img
+                      src={registration.defaultPhoto}
+                      alt={`${registration.name} photo`}
+                      className="w-full h-full object-cover"
+                      onError={(e) => {
+                        const target = e.target as HTMLImageElement;
+                        target.style.display = 'none';
+                        target.nextElementSibling?.classList.remove('hidden');
+                      }}
+                    />
+                    <div className="hidden absolute inset-0 flex items-center justify-center bg-gray-100">
+                      <div className="text-center text-gray-500">
+                        <Camera className="h-12 w-12 mx-auto mb-2" />
+                        <p>Photo could not be loaded</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            )}
+
             {/* Basic Information */}
             <div className="bg-white rounded-lg shadow-sm border p-6">
               <h2 className="text-xl font-semibold mb-4">Basic Information</h2>

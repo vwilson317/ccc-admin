@@ -60,14 +60,60 @@ const createMockSupabaseClient = () => {
   console.warn('⚠️ Using mock Supabase client - database operations will not work')
   console.warn('To connect to Supabase, please update your .env file with valid credentials')
   
+  // Create a mock query builder that implements the full Supabase query interface
+  const createMockQueryBuilder = () => {
+    let mockData: any[] = []
+    let mockError: any = null
+    let mockCount: number = 0
+    
+    const queryBuilder = {
+      select: (columns?: string | string[], options?: any) => {
+        if (options?.count) {
+          return Promise.resolve({ data: mockData, error: mockError, count: mockCount })
+        }
+        return Promise.resolve({ data: mockData, error: mockError })
+      },
+      insert: (data: any) => Promise.resolve({ data: null, error: mockError }),
+      update: (data: any) => Promise.resolve({ data: null, error: mockError }),
+      delete: () => Promise.resolve({ data: null, error: mockError }),
+      upsert: (data: any) => Promise.resolve({ data: null, error: mockError }),
+      eq: (column: string, value: any) => queryBuilder,
+      neq: (column: string, value: any) => queryBuilder,
+      gt: (column: string, value: any) => queryBuilder,
+      gte: (column: string, value: any) => queryBuilder,
+      lt: (column: string, value: any) => queryBuilder,
+      lte: (column: string, value: any) => queryBuilder,
+      like: (column: string, value: any) => queryBuilder,
+      ilike: (column: string, value: any) => queryBuilder,
+      is: (column: string, value: any) => queryBuilder,
+      in: (column: string, values: any[]) => queryBuilder,
+      contains: (column: string, value: any) => queryBuilder,
+      containedBy: (column: string, value: any) => queryBuilder,
+      rangeGt: (column: string, value: any) => queryBuilder,
+      rangeGte: (column: string, value: any) => queryBuilder,
+      rangeLt: (column: string, value: any) => queryBuilder,
+      rangeLte: (column: string, value: any) => queryBuilder,
+      rangeAdjacent: (column: string, value: any) => queryBuilder,
+      overlaps: (column: string, value: any) => queryBuilder,
+      textSearch: (column: string, query: string, config?: any) => queryBuilder,
+      match: (query: any) => queryBuilder,
+      not: (column: string, operator: string, value: any) => queryBuilder,
+      or: (filters: string, foreignTable?: string) => queryBuilder,
+      order: (column: string, options?: any) => queryBuilder,
+      limit: (count: number) => queryBuilder,
+      range: (from: number, to: number) => queryBuilder,
+      single: () => Promise.resolve({ data: null, error: mockError }),
+      maybeSingle: () => Promise.resolve({ data: null, error: mockError }),
+      abortSignal: (signal: AbortSignal) => queryBuilder,
+      onConflict: (columns: string) => queryBuilder,
+      ignoreDuplicates: (ignore?: boolean) => queryBuilder,
+    }
+    
+    return queryBuilder
+  }
+  
   return {
-    from: () => ({
-      select: () => Promise.resolve({ data: [], error: null }),
-      insert: () => Promise.resolve({ data: null, error: null }),
-      update: () => Promise.resolve({ data: null, error: null }),
-      delete: () => Promise.resolve({ data: null, error: null }),
-      upsert: () => Promise.resolve({ data: null, error: null }),
-    }),
+    from: (table: string) => createMockQueryBuilder(),
     auth: {
       signUp: () => Promise.resolve({ data: null, error: null }),
       signIn: () => Promise.resolve({ data: null, error: null }),

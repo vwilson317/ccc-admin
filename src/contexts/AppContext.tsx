@@ -1,10 +1,13 @@
 import React, { createContext, useContext, ReactNode, useEffect } from 'react';
-import { Provider, useSelector, useDispatch } from 'react-redux';
-import { store, RootState, AppDispatch } from '../store';
+import { useSelector, useDispatch } from 'react-redux';
+import { RootState, AppDispatch } from '../store';
 import { 
   setWeatherOverride, 
   setOverrideExpiry,
   setAdminStatus,
+  login,
+  logout,
+  updateSession,
   setBarracas,
   addBarraca as addBarracaAction,
   updateBarraca as updateBarracaAction,
@@ -16,6 +19,7 @@ import {
 } from '../store/slices/appSlice';
 import { BarracaService } from '../services/barracaService';
 import { environmentInfo } from '../lib/supabase';
+import { isSessionValid } from '../utils/sessionUtils';
 
 // Context interface
 interface AppContextType {
@@ -30,6 +34,18 @@ interface AppContextType {
   isSpecialAdmin: boolean;
   adminLogin: (email: string, password: string) => Promise<void>;
   adminLogout: () => void;
+  
+  // Session state
+  session: {
+    isAuthenticated: boolean;
+    user: {
+      email: string;
+      role: 'admin' | 'special_admin';
+      lastLogin: string | null;
+    } | null;
+    token: string | null;
+    expiresAt: string | null;
+  };
   
   // Data
   barracas: any[];
@@ -65,11 +81,7 @@ interface AppProviderProps {
 }
 
 export const AppProvider: React.FC<AppProviderProps> = ({ children }) => {
-  return (
-    <Provider store={store}>
-      <AppContextInner>{children}</AppContextInner>
-    </Provider>
-  );
+  return <AppContextInner>{children}</AppContextInner>;
 };
 
 // Inner component that uses Redux hooks
@@ -81,6 +93,7 @@ const AppContextInner: React.FC<{ children: ReactNode }> = ({ children }) => {
   const overrideExpiry = useSelector((state: RootState) => state.app.overrideExpiry);
   const isAdmin = useSelector((state: RootState) => state.app.isAdmin);
   const isSpecialAdmin = useSelector((state: RootState) => state.app.isSpecialAdmin);
+  const session = useSelector((state: RootState) => state.app.session);
   const barracas = useSelector((state: RootState) => state.app.barracas);
   const emailSubscriptions = useSelector((state: RootState) => state.app.emailSubscriptions);
   const isLoading = useSelector((state: RootState) => state.app.isLoading);
@@ -194,8 +207,15 @@ const AppContextInner: React.FC<{ children: ReactNode }> = ({ children }) => {
     }
   };
 
-  // Load data when admin status changes
+  // Check session expiration and load data when admin status changes
   useEffect(() => {
+    // Check if session has expired
+    if (session.isAuthenticated && !isSessionValid(session.expiresAt)) {
+      console.log('Session expired, logging out');
+      dispatch(logout());
+      return;
+    }
+    
     if (isAdmin || isSpecialAdmin) {
       if (environmentInfo.hasValidConfig) {
         refreshBarracas();
@@ -203,7 +223,7 @@ const AppContextInner: React.FC<{ children: ReactNode }> = ({ children }) => {
         loadSampleData();
       }
     }
-  }, [isAdmin, isSpecialAdmin]);
+  }, [isAdmin, isSpecialAdmin, session.isAuthenticated, session.expiresAt]);
 
   // Mock implementations for missing functionality
   const adminLogin = async (email: string, password: string) => {
@@ -214,8 +234,19 @@ const AppContextInner: React.FC<{ children: ReactNode }> = ({ children }) => {
       // TODO: Implement actual admin login logic
       console.log('Admin login:', email, password);
       
-      // For now, just set admin status and let the useEffect handle data loading
-      dispatch(setAdminStatus({ isAdmin: true, isSpecialAdmin: false }));
+      // For now, create a mock session
+      const mockToken = 'mock-jwt-token-' + Date.now();
+      const expiresAt = new Date(Date.now() + 24 * 60 * 60 * 1000); // 24 hours from now
+      
+      // Determine role based on email (you can customize this logic)
+      const role = email.includes('special') ? 'special_admin' : 'admin';
+      
+      dispatch(login({
+        email,
+        role,
+        token: mockToken,
+        expiresAt,
+      }));
       
     } catch (error) {
       console.error('Login failed:', error);
@@ -227,10 +258,7 @@ const AppContextInner: React.FC<{ children: ReactNode }> = ({ children }) => {
   };
 
   const adminLogout = () => {
-    dispatch(setAdminStatus({ isAdmin: false, isSpecialAdmin: false }));
-    // Clear data on logout
-    dispatch(setBarracas([]));
-    dispatch(setEmailSubscriptions([]));
+    dispatch(logout());
   };
 
   const refreshBarracas = async () => {
@@ -264,6 +292,9 @@ const AppContextInner: React.FC<{ children: ReactNode }> = ({ children }) => {
     isSpecialAdmin,
     adminLogin,
     adminLogout,
+    
+    // Session state
+    session,
     
     // Data
     barracas,

@@ -17,6 +17,7 @@ const Admin: React.FC = () => {
   const { 
     isAdmin, 
     isSpecialAdmin,
+    session,
     adminLogin, 
     adminLogout, 
     barracas, 
@@ -321,6 +322,23 @@ const Admin: React.FC = () => {
             </h1>
             
             <div className="flex items-center space-x-4">
+              {/* Session Info */}
+              {session.isAuthenticated && session.user && (
+                <div className="hidden sm:flex items-center space-x-2 text-sm text-gray-600">
+                  <span className="font-medium">{session.user.email}</span>
+                  <span className="text-gray-400">•</span>
+                  <span className="capitalize">{session.user.role.replace('_', ' ')}</span>
+                  {session.expiresAt && (
+                    <>
+                      <span className="text-gray-400">•</span>
+                      <span className="text-xs">
+                        Expires: {new Date(session.expiresAt).toLocaleTimeString()}
+                      </span>
+                    </>
+                  )}
+                </div>
+              )}
+              
               {/* Language Switcher */}
               <LanguageSwitcher />
               
@@ -349,6 +367,21 @@ const Admin: React.FC = () => {
           {mobileMenuOpen && (
             <div className="sm:hidden border-t border-gray-200 bg-white">
               <div className="px-2 pt-2 pb-3 space-y-1">
+                {/* Session Info */}
+                {session.isAuthenticated && session.user && (
+                  <div className="px-3 py-2 text-sm text-gray-600 border-b border-gray-100">
+                    <div className="font-medium">{session.user.email}</div>
+                    <div className="text-xs text-gray-500 capitalize">
+                      {session.user.role.replace('_', ' ')}
+                    </div>
+                    {session.expiresAt && (
+                      <div className="text-xs text-gray-500">
+                        Expires: {new Date(session.expiresAt).toLocaleTimeString()}
+                      </div>
+                    )}
+                  </div>
+                )}
+                
                 <button
                   onClick={() => {
                     adminLogout();

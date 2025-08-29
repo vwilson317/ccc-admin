@@ -10,6 +10,18 @@ interface AppState {
   isAdmin: boolean;
   isSpecialAdmin: boolean;
   
+  // Session state
+  session: {
+    isAuthenticated: boolean;
+    user: {
+      email: string;
+      role: 'admin' | 'special_admin';
+      lastLogin: string | null;
+    } | null;
+    token: string | null;
+    expiresAt: string | null;
+  };
+  
   // Data
   barracas: Barraca[];
   emailSubscriptions: any[];
@@ -27,6 +39,14 @@ const initialState: AppState = {
   // Admin state
   isAdmin: false,
   isSpecialAdmin: false,
+  
+  // Session state
+  session: {
+    isAuthenticated: false,
+    user: null,
+    token: null,
+    expiresAt: null,
+  },
   
   // Data
   barracas: [],
@@ -53,6 +73,52 @@ const appSlice = createSlice({
     setAdminStatus: (state, action: PayloadAction<{ isAdmin: boolean; isSpecialAdmin: boolean }>) => {
       state.isAdmin = action.payload.isAdmin;
       state.isSpecialAdmin = action.payload.isSpecialAdmin;
+    },
+    
+    // Session management
+    login: (state, action: PayloadAction<{
+      email: string;
+      role: 'admin' | 'special_admin';
+      token: string;
+      expiresAt: Date;
+    }>) => {
+      state.session.isAuthenticated = true;
+      state.session.user = {
+        email: action.payload.email,
+        role: action.payload.role,
+        lastLogin: new Date().toISOString(),
+      };
+      state.session.token = action.payload.token;
+      state.session.expiresAt = action.payload.expiresAt.toISOString();
+      
+      // Set admin status based on role
+      state.isAdmin = action.payload.role === 'admin' || action.payload.role === 'special_admin';
+      state.isSpecialAdmin = action.payload.role === 'special_admin';
+    },
+    
+    logout: (state) => {
+      state.session.isAuthenticated = false;
+      state.session.user = null;
+      state.session.token = null;
+      state.session.expiresAt = null;
+      state.isAdmin = false;
+      state.isSpecialAdmin = false;
+      
+      // Clear data on logout
+      state.barracas = [];
+      state.emailSubscriptions = [];
+    },
+    
+    updateSession: (state, action: PayloadAction<{
+      token?: string;
+      expiresAt?: Date;
+      lastLogin?: Date;
+    }>) => {
+      if (action.payload.token) state.session.token = action.payload.token;
+      if (action.payload.expiresAt) state.session.expiresAt = action.payload.expiresAt.toISOString();
+      if (action.payload.lastLogin && state.session.user) {
+        state.session.user.lastLogin = action.payload.lastLogin.toISOString();
+      }
     },
     
     // Data management
@@ -92,6 +158,9 @@ export const {
   setWeatherOverride, 
   setOverrideExpiry,
   setAdminStatus,
+  login,
+  logout,
+  updateSession,
   setBarracas,
   addBarraca,
   updateBarraca,

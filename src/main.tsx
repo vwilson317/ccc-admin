@@ -7,8 +7,12 @@ import { Provider } from 'react-redux'
 import App from "./App.tsx"
 import { AppProvider } from "./contexts/AppContext"
 import { store, persistor } from './store'
+import { initSentry } from './utils/sentryLogger'
 import "./i18n"
 import "./index.css"
+
+// Initialize Sentry
+initSentry();
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>

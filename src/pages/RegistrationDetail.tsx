@@ -29,6 +29,7 @@ import {
 } from 'lucide-react';
 import { BarracaRegistration } from '../types';
 import { BarracaRegistrationService } from '../services/barracaRegistrationService';
+import { registrationLogger } from '../utils/sentryLogger';
 import toast from 'react-hot-toast';
 
 const RegistrationDetail: React.FC = () => {
@@ -50,13 +51,20 @@ const RegistrationDetail: React.FC = () => {
   const loadRegistration = async (registrationId: string) => {
     try {
       setLoading(true);
+      registrationLogger.info('Loading registration', { registrationId });
+      
       const data = await BarracaRegistrationService.getById(registrationId);
       setRegistration(data);
       if (data?.adminNotes) {
         setAdminNotes(data.adminNotes);
       }
+      
+      registrationLogger.info('Registration loaded successfully', { 
+        registrationId, 
+        status: data?.status 
+      });
     } catch (error) {
-      console.error('Error loading registration:', error);
+      registrationLogger.error('Error loading registration', error, { registrationId });
       toast.error('Failed to load registration details');
     } finally {
       setLoading(false);
@@ -68,15 +76,24 @@ const RegistrationDetail: React.FC = () => {
 
     try {
       setUpdating(true);
+      registrationLogger.trackAction('status_update_started', id, { status, hasAdminNotes: !!adminNotes });
+      
       await BarracaRegistrationService.updateStatus(id, status, adminNotes);
       
       toast.success(`Registration ${status === 'approved' ? 'approved' : 'rejected'} successfully`);
+      registrationLogger.info('Registration status updated successfully', { 
+        registrationId: id, 
+        newStatus: status 
+      });
       
       // Reload the registration to show updated status
       await loadRegistration(id);
       
     } catch (error) {
-      console.error('Error updating status:', error);
+      registrationLogger.error('Error updating status', error, { 
+        registrationId: id, 
+        attemptedStatus: status 
+      });
       toast.error('Failed to update registration status');
     } finally {
       setUpdating(false);
@@ -88,11 +105,15 @@ const RegistrationDetail: React.FC = () => {
 
     try {
       setUpdating(true);
+      registrationLogger.trackAction('convert_to_barraca_started', id);
+      
       await BarracaRegistrationService.convertToBarraca(id);
       toast.success('Registration converted to barraca successfully');
+      
+      registrationLogger.info('Registration converted to barraca successfully', { registrationId: id });
       navigate('/admin');
     } catch (error) {
-      console.error('Error converting to barraca:', error);
+      registrationLogger.error('Error converting to barraca', error, { registrationId: id });
       toast.error('Failed to convert registration to barraca');
     } finally {
       setUpdating(false);
@@ -100,7 +121,7 @@ const RegistrationDetail: React.FC = () => {
   };
 
   const handleBackClick = () => {
-    console.log('Back button clicked');
+    registrationLogger.trackAction('back_button_clicked');
     navigate('/admin');
   };
 

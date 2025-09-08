@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { Power } from 'lucide-react';
 import LanguageSwitcher from './LanguageSwitcher';
 import { useApp } from '../contexts/AppContext';
+import { Link } from 'react-router-dom';
 
 const AppHeader: React.FC = () => {
   const { t } = useTranslation();
@@ -13,9 +14,13 @@ const AppHeader: React.FC = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           <div className="flex items-center space-x-3">
-            <h1 className="text-xl sm:text-2xl font-bold text-gray-900" data-lingo-skip>
-              {t('admin.dashboard')}
-            </h1>
+            <Link
+              to="/"
+              className="text-xl sm:text-2xl font-bold text-gray-900 hover:text-beach-600 transition-colors"
+              aria-label={t('admin.dashboard')}
+            >
+              <span data-lingo-skip>{t('admin.dashboard')}</span>
+            </Link>
           </div>
 
           <div className="flex items-center space-x-4">

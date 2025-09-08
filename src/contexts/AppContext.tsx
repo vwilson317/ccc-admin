@@ -1,4 +1,4 @@
-import React, { createContext, useContext, ReactNode, useEffect } from 'react';
+import React, { createContext, useContext, ReactNode, useEffect, useCallback } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { RootState, AppDispatch } from '../store';
 import { 
@@ -276,7 +276,7 @@ const AppContextInner: React.FC<{ children: ReactNode }> = ({ children }) => {
     dispatch(logout());
   };
 
-  const refreshBarracas = async () => {
+  const refreshBarracas = useCallback(async () => {
     try {
       dispatch(setLoading(true));
       dispatch(clearError());
@@ -293,9 +293,9 @@ const AppContextInner: React.FC<{ children: ReactNode }> = ({ children }) => {
     } finally {
       dispatch(setLoading(false));
     }
-  };
+  }, [dispatch]);
 
-  const refreshEmailSubscriptions = async () => {
+  const refreshEmailSubscriptions = useCallback(async () => {
     try {
       console.log('Refreshing email subscriptions...');
       const result = await EmailSubscriptionService.getAll();
@@ -307,7 +307,7 @@ const AppContextInner: React.FC<{ children: ReactNode }> = ({ children }) => {
       console.error('Failed to refresh email subscriptions:', error);
       // Don't set error for email subscriptions as it's not critical
     }
-  };
+  }, [dispatch]);
 
   // Create barraca through service, then store
   const addBarraca = async (barraca: any) => {

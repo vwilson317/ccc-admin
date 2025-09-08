@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { toast } from 'react-hot-toast';
 import { useTranslation } from 'react-i18next';
 import { Save, X, Plus, Trash2, Settings, Calendar, Eye, MessageCircle, Menu, Phone, Mail, ExternalLink, Star, Instagram } from 'lucide-react';
 import { useApp } from '../contexts/AppContext';
@@ -198,8 +199,10 @@ const AdminBarracaForm: React.FC<AdminBarracaFormProps> = ({ barracaId, onCancel
     'Wheelchair Accessible'
   ];
 
+  const [isInitialized, setIsInitialized] = useState(false);
+
   useEffect(() => {
-    if (barracaId) {
+    if (barracaId && !isInitialized) {
       const barraca = barracas.find(b => b.id === barracaId);
       if (barraca) {
         setFormData({
@@ -251,9 +254,10 @@ const AdminBarracaForm: React.FC<AdminBarracaFormProps> = ({ barracaId, onCancel
           // Tab system
           tabSystem: (barraca as any).tabSystem || 'name_only'
         });
+        setIsInitialized(true);
       }
     }
-  }, [barracaId, barracas]);
+  }, [barracaId, barracas, isInitialized]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -309,9 +313,11 @@ const AdminBarracaForm: React.FC<AdminBarracaFormProps> = ({ barracaId, onCancel
       if (barracaId) {
         await updateBarraca({ ...barracaData, id: barracaId });
         setSaveMessage({ type: 'success', text: 'Barraca updated successfully!' });
+        toast.success('Barraca updated successfully!');
       } else {
         await addBarraca(barracaData);
         setSaveMessage({ type: 'success', text: 'Barraca created successfully!' });
+        toast.success('Barraca created successfully!');
       }
 
       // Auto-hide success message after 3 seconds
@@ -1191,6 +1197,15 @@ const AdminBarracaForm: React.FC<AdminBarracaFormProps> = ({ barracaId, onCancel
                   ...prev,
                   contact: { ...prev.contact, instagram: e.target.value }
                 }))}
+                onBlur={(e) => {
+                  const value = e.target.value.trim();
+                  if (!value) return; // keep empty if user cleared
+                  const validation = validateInstagramUrl(value);
+                  setFormData(prev => ({
+                    ...prev,
+                    contact: { ...prev.contact, instagram: validation.isValid ? validation.formattedUrl : value }
+                  }));
+                }}
                 placeholder="@barraca_username"
                 className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-beach-500 focus:border-transparent"
               />

@@ -6,7 +6,7 @@ export const initSentry = () => {
     dsn: import.meta.env.VITE_SENTRY_DSN, // You'll need to add this to your .env file
     environment: import.meta.env.MODE, // 'development' or 'production'
     integrations: [
-      new Sentry.BrowserTracing(),
+      Sentry.browserTracingIntegration(),
     ],
     tracesSampleRate: import.meta.env.MODE === 'production' ? 0.1 : 1.0,
     beforeSend(event) {

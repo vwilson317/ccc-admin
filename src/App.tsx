@@ -2,6 +2,8 @@ import React from "react";
 import { Routes, Route } from "react-router-dom";
 import Admin from "./pages/Admin";
 import RegistrationDetail from "./pages/RegistrationDetail";
+import BarracasGrid from "./pages/BarracasGrid";
+import BarracaDetail from "./pages/BarracaDetail";
 
 function App() {
   return (
@@ -10,6 +12,9 @@ function App() {
         <Route path="/" element={<Admin />} />
         <Route path="/admin" element={<Admin />} />
         <Route path="/registration/:id" element={<RegistrationDetail />} />
+        <Route path="/barracas" element={<BarracasGrid />} />
+        <Route path="/barracas/new" element={<BarracaDetail />} />
+        <Route path="/barracas/:id" element={<BarracaDetail />} />
       </Routes>
     </div>
   );

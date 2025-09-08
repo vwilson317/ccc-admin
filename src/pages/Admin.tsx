@@ -272,36 +272,6 @@ const Admin: React.FC = () => {
   if (isSpecialAdmin) {
     return (
       <div className="min-h-screen bg-gray-50">
-        {/* Header */}
-        <div className="bg-white shadow-sm border-b sticky top-0 z-50">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="flex justify-between items-center h-16">
-              <h1 className="text-xl sm:text-2xl font-bold text-gray-900" data-lingo-skip>
-                Special Admin Panel
-              </h1>
-              
-              <div className="flex items-center space-x-4">
-                {/* Language Switcher */}
-                <LanguageSwitcher />
-                
-                {/* Desktop Logout Button - Always visible when logged in */}
-                <button
-                  onClick={adminLogout}
-                  className="flex items-center px-4 sm:px-6 py-2 bg-red-600 text-white text-sm font-medium rounded-lg hover:bg-red-700 transition-colors shadow-sm border-2 border-red-700"
-                >
-                  <Power className="h-4 w-4 mr-2" />
-                  <span className="hidden sm:inline">{t('admin.logout')}</span>
-                  <span className="sm:hidden">Logout</span>
-                </button>
-              </div>
-              
-
-            </div>
-            
-
-          </div>
-        </div>
-
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
           <SpecialAdminPanel 
             barracas={barracas}
@@ -315,91 +285,6 @@ const Admin: React.FC = () => {
   // Regular Admin Interface - Show all tabs and panels
   return (
     <div className="min-h-screen bg-gray-50">
-      {/* Header */}
-      <div className="bg-white shadow-sm border-b sticky top-0 z-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center h-16">
-            <h1 className="text-xl sm:text-2xl font-bold text-gray-900" data-lingo-skip>
-              {t('admin.dashboard')}
-            </h1>
-            
-            <div className="flex items-center space-x-4">
-              {/* Session Info */}
-              {session.isAuthenticated && session.user && (
-                <div className="hidden sm:flex items-center space-x-2 text-sm text-gray-600">
-                  <span className="font-medium">{session.user.email}</span>
-                  <span className="text-gray-400">•</span>
-                  <span className="capitalize">{session.user.role.replace('_', ' ')}</span>
-                  {session.expiresAt && (
-                    <>
-                      <span className="text-gray-400">•</span>
-                      <span className="text-xs">
-                        Expires: {new Date(session.expiresAt).toLocaleTimeString()}
-                      </span>
-                    </>
-                  )}
-                </div>
-              )}
-              
-              {/* Language Switcher */}
-              <LanguageSwitcher />
-              
-              {/* Desktop Logout Button */}
-              <button
-                onClick={adminLogout}
-                className="hidden sm:flex items-center px-4 py-2 text-sm text-red-600 hover:text-red-800 hover:bg-red-50 rounded-lg transition-colors"
-              >
-                <Power className="h-4 w-4 mr-2" />
-                {t('admin.logout')}
-              </button>
-            </div>
-            
-            {/* Mobile Menu Button */}
-            <button
-              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="sm:hidden p-2 rounded-md text-gray-600 hover:text-gray-900 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-beach-500"
-            >
-              <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
-              </svg>
-            </button>
-          </div>
-          
-          {/* Mobile Menu */}
-          {mobileMenuOpen && (
-            <div className="sm:hidden border-t border-gray-200 bg-white">
-              <div className="px-2 pt-2 pb-3 space-y-1">
-                {/* Session Info */}
-                {session.isAuthenticated && session.user && (
-                  <div className="px-3 py-2 text-sm text-gray-600 border-b border-gray-100">
-                    <div className="font-medium">{session.user.email}</div>
-                    <div className="text-xs text-gray-500 capitalize">
-                      {session.user.role.replace('_', ' ')}
-                    </div>
-                    {session.expiresAt && (
-                      <div className="text-xs text-gray-500">
-                        Expires: {new Date(session.expiresAt).toLocaleTimeString()}
-                      </div>
-                    )}
-                  </div>
-                )}
-                
-                <button
-                  onClick={() => {
-                    adminLogout();
-                    setMobileMenuOpen(false);
-                  }}
-                  className="w-full text-left px-3 py-2 text-base font-medium text-red-600 hover:text-red-800 hover:bg-red-50 rounded-md flex items-center"
-                >
-                  <Power className="h-4 w-4 mr-2" />
-                  {t('admin.logout')}
-                </button>
-              </div>
-            </div>
-          )}
-        </div>
-      </div>
-
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {/* Tabs */}
         <div className="mb-8">

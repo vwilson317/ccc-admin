@@ -51,8 +51,8 @@ interface AppContextType {
   // Data
   barracas: any[];
   emailSubscriptions: any[];
-  addBarraca: (barraca: any) => void;
-  updateBarraca: (barraca: any) => void;
+  addBarraca: (barraca: any) => Promise<void>;
+  updateBarraca: (barraca: any) => Promise<void>;
   deleteBarraca: (id: string) => void;
   refreshBarracas: () => Promise<void>;
   refreshEmailSubscriptions: () => Promise<void>;
@@ -309,6 +309,39 @@ const AppContextInner: React.FC<{ children: ReactNode }> = ({ children }) => {
     }
   };
 
+  // Create barraca through service, then store
+  const addBarraca = async (barraca: any) => {
+    try {
+      dispatch(setLoading(true));
+      dispatch(clearError());
+      const created = await BarracaService.create(barraca);
+      dispatch(addBarracaAction(created));
+    } catch (error) {
+      console.error('Failed to create barraca:', error);
+      dispatch(setError('Failed to create barraca.'));
+      throw error;
+    } finally {
+      dispatch(setLoading(false));
+    }
+  };
+
+  // Update barraca through service, then store
+  const updateBarraca = async (barraca: any) => {
+    try {
+      dispatch(setLoading(true));
+      dispatch(clearError());
+      const { id, ...updates } = barraca;
+      const updated = await BarracaService.update(id, updates);
+      dispatch(updateBarracaAction(updated));
+    } catch (error) {
+      console.error('Failed to update barraca:', error);
+      dispatch(setError('Failed to update barraca.'));
+      throw error;
+    } finally {
+      dispatch(setLoading(false));
+    }
+  };
+
   const contextValue: AppContextType = {
     // Weather and environment
     weatherOverride,
@@ -328,8 +361,8 @@ const AppContextInner: React.FC<{ children: ReactNode }> = ({ children }) => {
     // Data
     barracas,
     emailSubscriptions,
-    addBarraca: (barraca: any) => dispatch(addBarracaAction(barraca)),
-    updateBarraca: (barraca: any) => dispatch(updateBarracaAction(barraca)),
+    addBarraca,
+    updateBarraca,
     deleteBarraca: (id: string) => dispatch(deleteBarracaAction(id)),
     refreshBarracas,
     refreshEmailSubscriptions,

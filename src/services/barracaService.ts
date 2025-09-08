@@ -604,6 +604,14 @@ export class BarracaService {
       if (updates.amenities !== undefined) updateData.amenities = updates.amenities
       if (updates.weatherDependent !== undefined) updateData.weather_dependent = updates.weatherDependent
       if (updates.partnered !== undefined) updateData.partnered = updates.partnered
+      if (updates.weekendHoursEnabled !== undefined) updateData.weekend_hours_enabled = updates.weekendHoursEnabled
+      if (updates.specialAdminOverride !== undefined) updateData.special_admin_override = updates.specialAdminOverride
+      if (updates.specialAdminOverrideExpires !== undefined) {
+        updateData.special_admin_override_expires = updates.specialAdminOverrideExpires
+          ? updates.specialAdminOverrideExpires.toISOString()
+          : null
+      }
+      if (updates.rating !== undefined) updateData.rating = updates.rating || null
       if (updates.ctaButtons !== undefined) updateData.cta_buttons = updates.ctaButtons as unknown as Json
 
       const { data, error } = await supabase
@@ -615,6 +623,33 @@ export class BarracaService {
 
       if (error) {
         handleSupabaseError(error, 'update barraca')
+      }
+
+      // Handle weekend hours via RPC functions if provided in updates
+      try {
+        if (updates.weekendHoursEnabled !== undefined) {
+          if (updates.weekendHoursEnabled) {
+            const fridayOpen = updates.weekendHours?.friday?.open;
+            const fridayClose = updates.weekendHours?.friday?.close;
+            const saturdayOpen = updates.weekendHours?.saturday?.open;
+            const saturdayClose = updates.weekendHours?.saturday?.close;
+            const sundayOpen = updates.weekendHours?.sunday?.open;
+            const sundayClose = updates.weekendHours?.sunday?.close;
+            await BarracaService.setWeekendHours(
+              id,
+              fridayOpen,
+              fridayClose,
+              saturdayOpen,
+              saturdayClose,
+              sundayOpen,
+              sundayClose
+            );
+          } else {
+            await BarracaService.disableWeekendHours(id);
+          }
+        }
+      } catch (rpcError) {
+        console.warn('Weekend hours RPC failed (non-fatal):', rpcError);
       }
 
       const isOpen = await BarracaService.getOpenStatus(data.id)

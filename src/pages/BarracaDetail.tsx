@@ -1,12 +1,38 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import AdminBarracaForm from '../components/AdminBarracaForm';
+import ContactInfoAccordion from '../components/ContactInfoAccordion';
+import { useApp } from '../contexts/AppContext';
+import { Barraca } from '../types';
 
 const BarracaDetail: React.FC = () => {
   const { t } = useTranslation();
   const navigate = useNavigate();
   const { id } = useParams<{ id: string }>();
+  const { barracas, updateBarraca } = useApp();
+  const [currentBarraca, setCurrentBarraca] = useState<Barraca | null>(null);
+
+  useEffect(() => {
+    if (id) {
+      const barraca = barracas.find(b => b.id === id);
+      if (barraca) {
+        setCurrentBarraca(barraca);
+      }
+    }
+  }, [id, barracas]);
+
+  const handleContactUpdate = async (updatedContact: Barraca['contact']) => {
+    if (!currentBarraca) return;
+    
+    try {
+      const updatedBarraca = { ...currentBarraca, contact: updatedContact };
+      await updateBarraca(updatedBarraca);
+      setCurrentBarraca(updatedBarraca);
+    } catch (error) {
+      console.error('Failed to update contact info:', error);
+    }
+  };
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -22,6 +48,16 @@ const BarracaDetail: React.FC = () => {
             {t('common.back') || 'Back'}
           </button>
         </div>
+
+        {/* Contact Info Accordion - Only show for existing barracas */}
+        {currentBarraca && (
+          <div className="mb-6">
+            <ContactInfoAccordion 
+              barraca={currentBarraca} 
+              onContactUpdate={handleContactUpdate}
+            />
+          </div>
+        )}
 
         <AdminBarracaForm
           barracaId={id || null}

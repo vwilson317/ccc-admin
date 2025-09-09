@@ -81,7 +81,7 @@
     "disableWeatherOverride": "Disable Weather Override",
     "stats": "Analytics",
     "emails": "Email Subscribers",
-    "credentials": "Demo credentials: admin@cariocacoastal.com / admin123",
+    "credentials": "Demo credentials: admin@cariocacoastal.com / admin123, leticia@cariocacoastal.com / lovebug2025",
     "enableWeatherOverride": "Enable Weather Override",
     "disableWeatherOverride": "Disable Weather Override",
     "weatherOverrideActive": "Weather override is active. All barracas will appear closed until midnight.",
@@ -145,6 +145,19 @@
       "systemHealth": "System Health",
       "uptime": "Uptime",
       "activeSubscribers": "Active Subscribers"
+    },
+    "contactInfo": {
+      "title": "Contact Info",
+      "subtitle": "Quick access to barraca contact information",
+      "barracasWithContact": "barracas with contact info",
+      "searchPlaceholder": "Search by name, number, location, or contact info...",
+      "noResults": "No barracas found matching your search",
+      "noContacts": "No barracas with contact information",
+      "tryDifferentSearch": "Try a different search term",
+      "addContactInfo": "Add contact information to barracas to see them here",
+      "copyPhone": "Copy phone number",
+      "copyEmail": "Copy email address",
+      "copyInstagram": "Copy Instagram handle"
     }
   },
   "photos": {

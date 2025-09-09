@@ -258,6 +258,7 @@ export class BarracaRegistrationService {
         contact: {
           phone: registration.contact?.phone || '',
           email: registration.contact?.email || '',
+          instagram: registration.contact?.instagram || undefined,
           website: registration.contact?.website || undefined
         },
         amenities: registration.amenities || [],

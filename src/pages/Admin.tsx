@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Lock, Plus, Edit2, Trash2, Eye, EyeOff, Users, Mail, BarChart3, Power, Settings, MessageSquare, Copy, Check, ChevronLeft, ChevronRight } from 'lucide-react';
+import { Lock, Plus, Edit2, Trash2, Eye, EyeOff, Users, Mail, BarChart3, Power, Settings, MessageSquare, Copy, Check, ChevronLeft, ChevronRight, Phone, Database } from 'lucide-react';
 import { useApp } from '../contexts/AppContext';
 // import { useAnalytics } from '../hooks/useAnalytics';
 import { getEffectiveOpenStatus } from '../utils/environmentUtils';
@@ -11,6 +11,8 @@ import SpecialAdminPanel from '../components/SpecialAdminPanel';
 import ManualStatusPanel from '../components/ManualStatusPanel';
 import AdminRegistrations from '../components/AdminRegistrations';
 import LanguageSwitcher from '../components/LanguageSwitcher';
+import ContactInfo from '../components/ContactInfo';
+import InstagramMigration from '../components/InstagramMigration';
 
 const Admin: React.FC = () => {
   const { t } = useTranslation();
@@ -44,7 +46,7 @@ const Admin: React.FC = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [isLogging, setIsLogging] = useState(false);
   const [loginError, setLoginError] = useState('');
-  const [activeTab, setActiveTab] = useState<'registrations' | 'barracas' | 'stats' | 'emails' | 'analytics' | 'special' | 'manual'>('registrations');
+  const [activeTab, setActiveTab] = useState<'contact' | 'registrations' | 'barracas' | 'stats' | 'emails' | 'analytics' | 'special' | 'manual'>('contact');
   const [editingBarraca, setEditingBarraca] = useState<string | null>(null);
   const [showForm, setShowForm] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -291,6 +293,17 @@ const Admin: React.FC = () => {
           <div className="border-b border-gray-200">
             <nav className="-mb-px flex overflow-x-auto scrollbar-hide space-x-6 sm:space-x-8 pb-2">
               <button
+                onClick={() => setActiveTab('contact')}
+                className={`flex-shrink-0 py-2 px-1 border-b-2 font-medium text-sm transition-colors whitespace-nowrap ${
+                  activeTab === 'contact'
+                    ? 'border-beach-500 text-beach-600'
+                    : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
+                }`}
+              >
+                <Phone className="h-4 w-4 inline mr-2" />
+                {t('admin.contactInfo.title')}
+              </button>
+              <button
                 onClick={() => setActiveTab('registrations')}
                 className={`flex-shrink-0 py-2 px-1 border-b-2 font-medium text-sm transition-colors whitespace-nowrap ${
                   activeTab === 'registrations'
@@ -371,11 +384,26 @@ const Admin: React.FC = () => {
                 <Users className="h-4 w-4 inline mr-2" />
                 Manual Status
               </button>
+              {/* <button
+                onClick={() => setActiveTab('migration')}
+                className={`flex-shrink-0 py-2 px-1 border-b-2 font-medium text-sm transition-colors whitespace-nowrap ${
+                  activeTab === 'migration'
+                    ? 'border-beach-500 text-beach-600'
+                    : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
+                }`}
+              >
+                <Database className="h-4 w-4 inline mr-2" />
+                Migration
+              </button> */}
             </nav>
           </div>
         </div>
 
         {/* Content */}
+        {activeTab === 'contact' && (
+          <ContactInfo />
+        )}
+
         {activeTab === 'barracas' && (
           <div className="bg-white rounded-2xl shadow p-6 text-gray-600">
             <p>
@@ -497,6 +525,10 @@ const Admin: React.FC = () => {
         {activeTab === 'manual' && (
           <ManualStatusPanel />
         )}
+
+        {/* {activeTab === 'migration' && (
+          <InstagramMigration />
+        )} */}
       </div>
     </div>
   );

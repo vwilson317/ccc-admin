@@ -10,7 +10,9 @@
     "preview": "vite preview",
     "netlify:dev": "netlify dev",
     "netlify:build": "netlify build",
-    "netlify:deploy": "netlify deploy --prod"
+    "netlify:deploy": "netlify deploy --prod",
+    "migration:instagram": "node src/scripts/runInstagramMigration.cjs",
+    "migration:instagram:dry": "node src/scripts/runInstagramMigration.cjs dry"
   },
   "dependencies": {
     "@heroicons/react": "^2.2.0",

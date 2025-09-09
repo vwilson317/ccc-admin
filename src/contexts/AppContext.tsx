@@ -240,25 +240,37 @@ const AppContextInner: React.FC<{ children: ReactNode }> = ({ children }) => {
     }
   }, [isAdmin, isSpecialAdmin, session.isAuthenticated, session.expiresAt]);
 
-  // Mock implementations for missing functionality
+  // Admin login with credential validation
   const adminLogin = async (email: string, password: string) => {
     try {
       dispatch(setLoading(true));
       dispatch(clearError());
       
-      // TODO: Implement actual admin login logic
-      console.log('Admin login:', email, password);
+      console.log('Admin login attempt:', email);
       
-      // For now, create a mock session
+      // Define valid admin credentials
+      const validCredentials = [
+        { email: 'admin@cariocacoastal.com', password: 'admin123', role: 'admin' },
+        { email: 'leticia@cariocacoastal.com', password: 'lovebug2025', role: 'admin' },
+        { email: 'special@cariocacoastal.com', password: 'special123', role: 'special_admin' }
+      ];
+      
+      // Find matching credentials
+      const credential = validCredentials.find(
+        cred => cred.email === email && cred.password === password
+      );
+      
+      if (!credential) {
+        throw new Error('Invalid credentials');
+      }
+      
+      // Create session token
       const mockToken = 'mock-jwt-token-' + Date.now();
       const expiresAt = new Date(Date.now() + 24 * 60 * 60 * 1000); // 24 hours from now
       
-      // Determine role based on email (you can customize this logic)
-      const role = email.includes('special') ? 'special_admin' : 'admin';
-      
       dispatch(login({
-        email,
-        role,
+        email: credential.email,
+        role: credential.role as 'admin' | 'special_admin',
         token: mockToken,
         expiresAt,
       }));

@@ -145,6 +145,19 @@
       "systemHealth": "Santé du Système",
       "uptime": "Temps de Fonctionnement",
       "activeSubscribers": "Abonnés Actifs"
+    },
+    "contactInfo": {
+      "title": "Informations de Contact",
+      "subtitle": "Accès rapide aux informations de contact des barracas",
+      "barracasWithContact": "barracas avec informations de contact",
+      "searchPlaceholder": "Rechercher par nom, numéro, emplacement ou informations de contact...",
+      "noResults": "Aucune barraca trouvée avec votre recherche",
+      "noContacts": "Aucune barraca avec informations de contact",
+      "tryDifferentSearch": "Essayez un terme de recherche différent",
+      "addContactInfo": "Ajoutez des informations de contact aux barracas pour les voir ici",
+      "copyPhone": "Copier le numéro de téléphone",
+      "copyEmail": "Copier l'adresse email",
+      "copyInstagram": "Copier le handle Instagram"
     }
   },
   "photos": {

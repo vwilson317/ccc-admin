@@ -69,7 +69,7 @@ const AdminBarracaForm: React.FC<AdminBarracaFormProps> = ({ barracaId, onCancel
   const [showCTAConfig, setShowCTAConfig] = useState(false);
   const [imageErrors, setImageErrors] = useState<Record<string, boolean>>({});
   const [saveMessage, setSaveMessage] = useState<{ type: 'success' | 'error'; text: string } | null>(null);
-  const [activeTab, setActiveTab] = useState<'details' | 'contact'>('details');
+  const [activeTab, setActiveTab] = useState<'details'>('details');
 
   // Helper function to validate image URL
   const validateImageUrl = (url: string): boolean => {
@@ -496,28 +496,8 @@ const AdminBarracaForm: React.FC<AdminBarracaFormProps> = ({ barracaId, onCancel
           </div>
         )}
 
-        {/* Tabs */}
-        <div className="border-b border-gray-200">
-          <nav className="-mb-px flex space-x-6" aria-label="Tabs">
-            <button
-              type="button"
-              className={`${activeTab === 'details' ? 'border-beach-500 text-beach-600' : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'} whitespace-nowrap py-3 px-1 border-b-2 text-sm font-medium`}
-              onClick={() => setActiveTab('details')}
-            >
-              Details
-            </button>
-            <button
-              type="button"
-              className={`${activeTab === 'contact' ? 'border-beach-500 text-beach-600' : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'} whitespace-nowrap py-3 px-1 border-b-2 text-sm font-medium`}
-              onClick={() => setActiveTab('contact')}
-            >
-              Contact
-            </button>
-          </nav>
-        </div>
 
-        {/* Details Tab Content */}
-        {activeTab === 'details' && (
+        {/* Form Content */}
         <>
         {/* Basic Information */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
@@ -806,7 +786,49 @@ const AdminBarracaForm: React.FC<AdminBarracaFormProps> = ({ barracaId, onCancel
           </div>
         </div>
 
-        {/* Contact Preferences (moved to Contact tab) */}
+        {/* Contact Preferences */}
+        <div>
+          <h4 className="text-lg font-medium text-gray-900 mb-3">Contact Preferences</h4>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">
+                Preferred Contact Method
+              </label>
+              <select
+                value={formData.preferredContactMethod}
+                onChange={(e) => setFormData(prev => ({ 
+                  ...prev, 
+                  preferredContactMethod: e.target.value as 'whatsapp' | 'instagram' | 'email' 
+                }))}
+                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-beach-500 focus:border-transparent"
+              >
+                <option value="whatsapp">WhatsApp</option>
+                <option value="instagram">Instagram</option>
+                <option value="email">Email</option>
+              </select>
+            </div>
+            <div className="flex items-center space-x-4">
+              <label className="flex items-center">
+                <input
+                  type="checkbox"
+                  checked={formData.contactForPhotos}
+                  onChange={(e) => setFormData(prev => ({ ...prev, contactForPhotos: e.target.checked }))}
+                  className="h-4 w-4 text-beach-600 focus:ring-beach-500 border-gray-300 rounded"
+                />
+                <span className="ml-2 text-sm text-gray-700">Contact for Photos</span>
+              </label>
+              <label className="flex items-center">
+                <input
+                  type="checkbox"
+                  checked={formData.contactForStatus}
+                  onChange={(e) => setFormData(prev => ({ ...prev, contactForStatus: e.target.checked }))}
+                  className="h-4 w-4 text-beach-600 focus:ring-beach-500 border-gray-300 rounded"
+                />
+                <span className="ml-2 text-sm text-gray-700">Contact for Status</span>
+              </label>
+            </div>
+          </div>
+        </div>
 
 
 
@@ -1134,7 +1156,7 @@ const AdminBarracaForm: React.FC<AdminBarracaFormProps> = ({ barracaId, onCancel
           </div>
         </div>
 
-        {/* Contact Information (moved to Contact tab) */}
+        {/* Contact Information - Now handled by ContactInfoAccordion */}
 
         {/* Partnered-only fields */}
         {formData.partnered && (
@@ -1545,197 +1567,6 @@ const AdminBarracaForm: React.FC<AdminBarracaFormProps> = ({ barracaId, onCancel
           </button>
         </div>
         </>
-        )}
-
-        {/* Contact Tab Content */}
-        {activeTab === 'contact' && (
-          <div className="space-y-6">
-            {/* Quick Actions */}
-            <div className="flex flex-wrap gap-2">
-              <button
-                type="button"
-                onClick={() => {
-                  const phone = (formData.contact.phone || '').replace(/\D/g, '');
-                  if (!phone) return;
-                  window.open(`https://wa.me/${phone}`, '_blank');
-                }}
-                className="inline-flex items-center px-3 py-2 rounded-lg bg-green-600 text-white hover:bg-green-700"
-              >
-                <MessageCircle className="h-4 w-4 mr-2" /> WhatsApp
-              </button>
-              <button
-                type="button"
-                onClick={() => formData.contact.email && window.open(`mailto:${formData.contact.email}`, '_self')}
-                className="inline-flex items-center px-3 py-2 rounded-lg bg-blue-600 text-white hover:bg-blue-700"
-              >
-                <Mail className="h-4 w-4 mr-2" /> Email
-              </button>
-              <button
-                type="button"
-                onClick={() => formData.contact.instagram && window.open(formData.contact.instagram, '_blank')}
-                className="inline-flex items-center px-3 py-2 rounded-lg bg-pink-600 text-white hover:bg-pink-700"
-              >
-                <Instagram className="h-4 w-4 mr-2" /> Instagram
-              </button>
-              <button
-                type="button"
-                onClick={() => formData.contact.phone && navigator.clipboard?.writeText(formData.contact.phone)}
-                className="inline-flex items-center px-3 py-2 rounded-lg bg-gray-100 text-gray-800 hover:bg-gray-200"
-              >
-                <Phone className="h-4 w-4 mr-2" /> Copy phone
-              </button>
-              <button
-                type="button"
-                onClick={() => formData.contact.email && navigator.clipboard?.writeText(formData.contact.email)}
-                className="inline-flex items-center px-3 py-2 rounded-lg bg-gray-100 text-gray-800 hover:bg-gray-200"
-              >
-                <Mail className="h-4 w-4 mr-2" /> Copy email
-              </button>
-            </div>
-
-            {/* Contact Information - Available for all barracas */}
-            <div>
-              <h4 className="text-lg font-medium text-gray-900 mb-3">{t('admin.form.contact')}</h4>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
-                    WhatsApp
-                  </label>
-                  <input
-                    type="tel"
-                    value={formData.contact.phone}
-                    onChange={(e) => setFormData(prev => ({
-                      ...prev,
-                      contact: { ...prev.contact, phone: e.target.value }
-                    }))}
-                    placeholder="+55 21 99999-0000"
-                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-beach-500 focus:border-transparent"
-                  />
-                </div>
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
-                    {t('admin.form.email')}
-                  </label>
-                  <input
-                    type="email"
-                    value={formData.contact.email}
-                    onChange={(e) => setFormData(prev => ({
-                      ...prev,
-                      contact: { ...prev.contact, email: e.target.value }
-                    }))}
-                    placeholder="contato@barraca.com"
-                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-beach-500 focus:border-transparent"
-                  />
-                </div>
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
-                    Instagram
-                  </label>
-                  <input
-                    type="text"
-                    value={formData.contact.instagram}
-                    onChange={(e) => setFormData(prev => ({
-                      ...prev,
-                      contact: { ...prev.contact, instagram: e.target.value }
-                    }))}
-                    onBlur={(e) => {
-                      const value = e.target.value.trim();
-                      if (!value) return; // keep empty if user cleared
-                      const validation = validateInstagramUrl(value);
-                      setFormData(prev => ({
-                        ...prev,
-                        contact: { ...prev.contact, instagram: validation.isValid ? validation.formattedUrl : value }
-                      }));
-                    }}
-                    placeholder="@barraca_username"
-                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-beach-500 focus:border-transparent"
-                  />
-                </div>
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
-                    Website
-                  </label>
-                  <input
-                    type="url"
-                    value={formData.contact.website}
-                    onChange={(e) => setFormData(prev => ({
-                      ...prev,
-                      contact: { ...prev.contact, website: e.target.value }
-                    }))}
-                    placeholder="https://www.barraca.com"
-                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-beach-500 focus:border-transparent"
-                  />
-                </div>
-              </div>
-            </div>
-
-            {/* Contact Preferences */}
-            <div>
-              <h4 className="text-lg font-medium text-gray-900 mb-3">Contact Preferences</h4>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
-                    Preferred Contact Method
-                  </label>
-                  <select
-                    value={formData.preferredContactMethod}
-                    onChange={(e) => setFormData(prev => ({ 
-                      ...prev, 
-                      preferredContactMethod: e.target.value as 'whatsapp' | 'instagram' | 'email' 
-                    }))}
-                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-beach-500 focus:border-transparent"
-                  >
-                    <option value="whatsapp">WhatsApp</option>
-                    <option value="instagram">Instagram</option>
-                    <option value="email">Email</option>
-                  </select>
-                </div>
-                <div className="flex items-center space-x-4">
-                  <label className="flex items-center">
-                    <input
-                      type="checkbox"
-                      checked={formData.contactForPhotos}
-                      onChange={(e) => setFormData(prev => ({ ...prev, contactForPhotos: e.target.checked }))}
-                      className="h-4 w-4 text-beach-600 focus:ring-beach-500 border-gray-300 rounded"
-                    />
-                    <span className="ml-2 text-sm text-gray-700">Contact for Photos</span>
-                  </label>
-                  <label className="flex items-center">
-                    <input
-                      type="checkbox"
-                      checked={formData.contactForStatus}
-                      onChange={(e) => setFormData(prev => ({ ...prev, contactForStatus: e.target.checked }))}
-                      className="h-4 w-4 text-beach-600 focus:ring-beach-500 border-gray-300 rounded"
-                    />
-                    <span className="ml-2 text-sm text-gray-700">Contact for Status</span>
-                  </label>
-                </div>
-              </div>
-            </div>
-
-            {/* Form Actions */}
-            <div className="flex justify-end space-x-4 pt-6 border-t">
-              <button
-                type="button"
-                onClick={onCancel}
-                className="px-4 py-2 text-gray-700 bg-gray-100 rounded-lg hover:bg-gray-200 transition-colors"
-              >
-                {t('common.cancel')}
-              </button>
-              <button
-                type="submit"
-                disabled={isSaving}
-                className="px-6 py-2 bg-gradient-to-r from-beach-500 to-beach-600 text-white rounded-lg hover:from-beach-600 hover:to-beach-700 transition-all duration-200 shadow-lg disabled:opacity-50 flex items-center"
-              >
-                {isSaving && (
-                  <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white mr-2"></div>
-                )}
-                <Save className="h-4 w-4 mr-2" />
-                {isSaving ? t('admin.form.saving') : t('admin.form.save')}
-              </button>
-            </div>
-          </div>
-        )}
       </form>
     </div>
   );

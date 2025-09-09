@@ -71,7 +71,7 @@ export async function updateBarracasWithInstagram(): Promise<MigrationResult> {
       }
 
       // Try to find matching registration by name (case-insensitive)
-      const matchingRegistration = registrations?.find(reg => 
+      const matchingRegistration = registrations?.find((reg: any) => 
         reg.name.toLowerCase().trim() === barraca.name.toLowerCase().trim() &&
         reg.contact?.instagram &&
         reg.contact.instagram.trim() !== ''
@@ -165,7 +165,7 @@ export async function updateBarracasWithInstagramDryRun(): Promise<{
     if (registrationsError) throw registrationsError;
 
     // Count barracas without Instagram
-    const barracasWithoutInstagram = allBarracas?.filter(barraca => {
+    const barracasWithoutInstagram = allBarracas?.filter((barraca: any) => {
       const hasInstagram = barraca.contact?.instagram && 
                           barraca.contact.instagram.trim() !== '';
       return !hasInstagram;
@@ -182,7 +182,7 @@ export async function updateBarracasWithInstagramDryRun(): Promise<{
         continue; // Skip barracas that already have Instagram
       }
 
-      const matchingRegistration = registrations?.find(reg => 
+      const matchingRegistration = registrations?.find((reg: any) => 
         reg.name.toLowerCase().trim() === barraca.name.toLowerCase().trim() &&
         reg.contact?.instagram &&
         reg.contact.instagram.trim() !== ''
